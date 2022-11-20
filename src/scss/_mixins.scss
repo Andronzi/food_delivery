@@ -1,0 +1,29 @@
+@mixin setFont($size, $fontStyle, $fontFamily, $lineHeight, $weight, $color, $letterSpacing) {
+    @if $size != null {
+        font-size: $size;
+    }
+    
+    @if $fontStyle != null {
+        font-style: $fontStyle;
+    }
+
+    @if $fontFamily != null {
+        font-family: $fontFamily;
+    }
+
+    @if $lineHeight != null {
+        line-height: $lineHeight;
+    }
+
+    @if $weight != null {
+        font-weight: $weight;
+    }
+
+    @if $color != null {
+        color: $color;
+    }
+
+    @if letterSpacing != null {
+        letter-spacing: 0.1em;
+    }
+}
