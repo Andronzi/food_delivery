@@ -6,7 +6,7 @@
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
 
     .container {
-        max-width: 1320px;
+        max-width: 1420px;
         margin: 0 auto;
         display: grid;
         grid-template-columns: 1.4fr 3fr 1fr 1fr;
@@ -15,9 +15,42 @@
         align-items: center;
         column-gap: 20px;
 
+        .menu {
+            position: relative;
+            display: block;
+            margin-left: 15px;
+            top: 17px;
+            width: 26px;
+            height: 26px;
+            cursor: pointer;
+            z-index: 1;
+            display: none;
+        }
+
+        .menu > span,
+        .menu > span::before {
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #616161;
+            transition-duration: .25s;
+        }
+
+        .menu > span::before {
+            content: '';
+            top: -8px;
+        }
+
+        .menu > span::after {
+            content: '';
+            top: 8px;
+        }
+
         .logo {
             display: flex;
             align-items: center;
+            margin-left: 10px;
 
             .logoImage {
                 width: 44px;
@@ -26,7 +59,7 @@
 
             .logoText {
                 margin-left: 20px;
-                @include setFont(36px, normal, $font, 42px, 400, $black, 0.1em);
+                @include setFont(36px, normal, $extraFont, 42px, 400, $black, 0.1em);
             }
         }
 
@@ -76,10 +109,54 @@
             .cart {
                 width: 44px;
                 height: 44px;
+                cursor: pointer;
             }
 
             .cart {
                 margin-left: 20px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        .container {
+            min-width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 6fr 1fr;
+            grid-template-rows: 50px;
+            column-gap: 0px;
+
+            .menu {
+                display: block !important;
+            }
+
+            .logo {
+                justify-self: center;
+
+                .logoImage {
+                    width: 24px;
+                }
+            
+                .logoText {
+                    font-size: 18px;
+                    margin-left: 5px;
+                }
+            }
+
+            .icons {
+                margin-left: 0px;
+                justify-self: end;
+        
+                .cart {
+                    width: 24px;
+                    margin-right: 15px;
+                }
+            }
+
+            .ul, .location, .user {
+                display: none;
             }
         }
     }
