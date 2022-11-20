@@ -4,8 +4,10 @@
       "typeRoots": ["src/types/"],
       "paths": {
         "types/*": ["src/types/*"],
-        "@components/*": ["src/Components/*"],
-        "@images/*": ["src/Resources/images/*"],
+        "@components/*": ["src/components/*"],
+        "@images/*": ["src/resources/images/*"],
+        "@resources/*": ["src/resources/*"],
+        "@icons/*": ["src/resources/icons/*"],
         "@redux/*": ["src/redux/*"],
         "@src/*": ["src/*"],
         "@api/*": ["src/api/*"]

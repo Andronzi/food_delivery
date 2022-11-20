@@ -1,0 +1,95 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:jsx-a11y/recommended",
+        "airbnb",
+        "airbnb-typescript",
+        "plugin:import/typescript",
+        "prettier"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint",
+        "react-hooks",
+        "import",
+        "jsx-a11y",
+        "prettier"
+    ],
+    "rules": {
+        "prettier/prettier": "error",
+        "react/boolean-prop-naming": "warn",
+        "react/button-has-type": "warn",
+        "react/default-props-match-prop-types": "warn",
+        "react/destructuring-assignment": "warn", //fixable with eslint --fix
+        "react/forbid-component-props": "error", //althougth it's hard to make
+        "react/prop-types": "warn",
+        "react/hook-use-state": "warn",
+        "react/no-access-state-in-setstate": "error",
+        "react/no-array-index-key": "warn",
+        "react/no-multi-comp": "warn",
+        "react/no-namespace": "warn",
+        "react/no-this-in-sfc": "error",
+        "react/no-typos": "warn",
+        "react/no-unstable-nested-components": "warn",
+        "react/no-unused-class-component-methods": "warn",
+        "react/no-unused-prop-types": "warn",
+        "react/no-unused-state": "warn",
+        "react/prefer-stateless-function": "warn",
+        "react/self-closing-comp": "warn",
+        "react/sort-comp": "warn",
+        "react/state-in-constructor": "warn",
+        "react/style-prop-object": "error",
+        "react/void-dom-elements-no-children": "warn",
+        "react/function-component-definition": "off",
+        "react/jsx-boolean-value": "warn",
+        "react/jsx-child-element-spacing": "warn",
+        "react/jsx-closing-bracket-location": "off",
+        "react/jsx-closing-tag-location": "warn",
+        "react/jsx-curly-brace-presence": "warn",
+        "react/jsx-curly-newline": "warn",
+        "react/jsx-curly-spacing": "warn",
+        "react/jsx-equals-spacing": "warn",
+        "react/jsx-filename-extension": "warn",
+        "react/jsx-first-prop-new-line": "warn",
+        "react/jsx-fragments": "warn",
+        "react/jsx-handler-names": "warn",
+        "react/jsx-indent": "warn",
+        "react/jsx-indent-props": "warn",
+        "react/jsx-max-depth": "warn",
+        "react/jsx-max-props-per-line": "warn",
+        "react/jsx-newline": "warn",
+        "react/jsx-no-bind": "warn",
+        "react/jsx-no-constructed-context-values": "warn",
+        "react/jsx-no-leaked-render": "warn",
+        "react/jsx-no-literals": "off",
+        "react/jsx-no-script-url": "warn",
+        "react/jsx-no-useless-fragment": "warn",
+        "react/jsx-one-expression-per-line": "warn",
+        "react/jsx-pascal-case": "warn",
+        "react/jsx-props-no-multi-spaces": "warn",
+        "react/jsx-props-no-spreading": "warn",
+        "react/jsx-sort-default-props": "warn",
+        "react/jsx-sort-props": "warn",
+        "react/jsx-space-before-closing": "warn",
+        "react/jsx-tag-spacing": "warn",
+        "react/jsx-wrap-multilines": "warn",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "@typescript-eslint/no-unused-vars": "warn", //in prod mode it must be error
+        "no-param-reassign": "off",
+        "linebreak-style": "off"
+    }
+}
