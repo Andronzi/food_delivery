@@ -18,11 +18,12 @@
         .menu {
             position: relative;
             display: block;
-            margin-left: 15px;
-            top: 17px;
             width: 26px;
-            height: 26px;
+            height: 44px;
             cursor: pointer;
+            padding: 0 0;
+            margin: 0 15px;
+            margin-top: 4px;
             z-index: 1;
             display: none;
         }
@@ -33,18 +34,13 @@
             position: absolute;
             width: 100%;
             height: 2px;
-            background-color: #616161;
+            background-color: $black;
             transition-duration: .25s;
         }
 
         .menu > span::before {
             content: '';
             top: -8px;
-        }
-
-        .menu > span::after {
-            content: '';
-            top: 8px;
         }
 
         .logo {
@@ -127,9 +123,12 @@
             grid-template-columns: 1fr 6fr 1fr;
             grid-template-rows: 50px;
             column-gap: 0px;
+            align-items: center;
 
             .menu {
                 display: block !important;
+                border: none;
+                background-color: transparent;
             }
 
             .logo {
@@ -151,7 +150,7 @@
         
                 .cart {
                     width: 24px;
-                    margin-right: 15px;
+                    margin: 0 15px;
                 }
             }
 
