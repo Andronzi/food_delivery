@@ -8,3 +8,4 @@ const dishApi = deliverySplitApi.injectEndpoints({
         })
     })
 })
+export const { useGetDishesQuery } = dishApi;
