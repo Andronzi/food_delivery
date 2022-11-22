@@ -35,6 +35,7 @@ module.exports = {
       "@redux": `${paths.src}/redux`,
       "@src": paths.src,
       "@api": `${paths.src}/api`,
+      "@scss": `${paths.src}/scss`
     },
     extensions: [
       ".wasm",

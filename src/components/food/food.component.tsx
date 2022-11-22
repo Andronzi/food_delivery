@@ -1,7 +1,9 @@
 import React from "react";
 import { useGetDishesQuery } from "@src/services/dish";
+import styles from "@components/food/food.module.scss";
+import DishCard from "./items/dishCard.component";
 
-const Dish: React.FC = () => {
+const Food: React.FC = () => {
   const [page, setPage] = React.useState(1);
   const { data, error, isLoading } = useGetDishesQuery({
     isVegetarian: false,
@@ -26,9 +28,17 @@ const Dish: React.FC = () => {
 
   return (
     <div>
-      {data.dishes.map(dish => (
-        <p>{dish.name}</p>
-      ))}
+      <div className={styles.container}>
+        {data.dishes.map(dish => (
+          <DishCard
+            category={dish.category}
+            name={dish.name}
+            price={dish.price}
+            rating={dish.rating}
+            src={dish.image}
+          />
+        ))}
+      </div>
 
       <button
         onClick={handleNextBtnClick}
@@ -39,4 +49,4 @@ const Dish: React.FC = () => {
   );
 };
 
-export default Dish;
+export default Food;

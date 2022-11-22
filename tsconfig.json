@@ -35,7 +35,7 @@
       "src/**/*",
       "babel.config.js",
       "webpack/**/*",
-      "postcss.config.js",
+      "postcss.config.js", "src/components/dish/.component.tsx",
     ],
     "exclude": ["node_modules/**/*", "dist/**/*"]
   }

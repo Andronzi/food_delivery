@@ -1,0 +1,65 @@
+@import "../../scss/fonts";
+@import "../../scss/mixins";
+@import "../../scss/colors";
+
+.container {
+    max-width: 1420px;
+    margin: 0 auto;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 30px;
+    font-family: $font;
+    margin-top: 39px;
+
+    .dish {
+        display: block;
+        min-height: 206px;
+        max-width: 310px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+
+        .image {
+            min-height: 206px;
+            max-width: 310px;
+    
+            img {
+                width: 100%;
+                background-size: cover;
+                min-height: 206px;
+            }
+        }
+    
+        .cardInfo {
+            padding: 15px 20px;
+    
+            .infoContainer {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .priceContainer {
+                margin-top: 14px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .price {
+                    @include setFont(12px, normal, $font, 18px, 600, $black, 0.1em);
+                }
+
+                .button {
+                    
+                }
+            }
+    
+            .title {
+                @include setFont(14px, normal, $font, 18px, 600, $black, 0.1em);
+            }
+    
+            .category {
+                @include setFont(12px, normal,#4D4D4D, 12px, 600, $black, 0.1em);
+            }
+        }
+    }
+}

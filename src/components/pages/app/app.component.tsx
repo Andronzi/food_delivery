@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar from "@components/navbar/navbar.component";
-import Dish from "@components/dish/dish.component";
+import Food from "@components/food/food.component";
 
 const App = () => (
   <div>
     <Navbar />
 
-    <Dish />
+    <Food />
   </div>
 );
 

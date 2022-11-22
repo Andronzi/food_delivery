@@ -6,7 +6,7 @@ interface IDish {
   image: string;
   vegetarian: boolean;
   rating: number;
-  catrgory: string;
+  category: string;
 }
 
 interface IPagination {
