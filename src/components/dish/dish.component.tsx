@@ -6,7 +6,7 @@ const Dish: React.FC = () => {
 
     return (
         <div>
-            <p>{data?.toString()}</p>
+            {data && Object.keys(data).map(key => <p>{key}</p>)}
         </div>
     )
 }
