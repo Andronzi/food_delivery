@@ -31,7 +31,8 @@
     ],
     "rules": {
         "prettier/prettier": "error",
-        "import/prefer-default-export": "no",
+        "import/prefer-default-export": "off",
+        "no-nested-ternary": "off", //looks may be great but also smth awful
         "react/boolean-prop-naming": "warn",
         "react/button-has-type": "warn",
         "react/default-props-match-prop-types": "warn",

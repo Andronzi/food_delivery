@@ -1,20 +1,20 @@
 interface IDish {
-    id: string;
-    name: string;
-    description: string;
-    price: number;
-    image: string;
-    vegetarian: boolean;
-    rating: number;
-    catrgory: string;
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  vegetarian: boolean;
+  rating: number;
+  catrgory: string;
 }
 
 interface IPagination {
-    size: number;
-    count: number;
-    current: number;
+  size: number;
+  count: number;
+  current: number;
 }
 
-type IDishDto = Array<IDish> & IPagination;
+type IDishDto = { dishes: Array<IDish>; pagination: IPagination };
 
 export { IPagination, IDish, IDishDto };
