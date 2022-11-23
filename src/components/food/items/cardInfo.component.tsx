@@ -21,7 +21,7 @@ const CardInfo: React.FC<CardInfoProps> = ({
       <p className={styles.category}>{category}</p>
     </div>
 
-    <p>{rating || 0}</p>
+    <p style={{ display: "none" }}>{rating || 0}</p>
 
     <div className={styles.priceContainer}>
       <p>{price}₽</p>
