@@ -1,42 +1,162 @@
-.div {
+@import "../../scss/mixins";
+@import "../../scss/fonts";
+@import "../../scss/colors";
+
+.wrapper {
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
-}
 
-.container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1320px;
-    margin: 0 auto;
-}
+    .container {
+        max-width: 1420px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 3fr 0.5fr 0.5fr;
+        grid-template-rows: 80px;
+        grid-template-areas: "logo ul location icons";
+        align-items: center;
+        column-gap: 20px;
 
-.font {
-    font-family: 'Montserrat';
-    font-size: 18px;
-}
+        .menu {
+            position: relative;
+            display: block;
+            width: 26px;
+            height: 44px;
+            cursor: pointer;
+            padding: 0 0;
+            margin: 0 15px;
+            margin-top: 4px;
+            z-index: 1;
+            display: none;
+        }
 
-.location, .icons, .logo {
-    display: flex;
-}
+        .menu > span,
+        .menu > span::before {
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: $black;
+            transition-duration: .25s;
+        }
 
-.logo {
-    .title {
-        margin-left: 10px;
-        font-size: 36px;
-        font-family: 'Montserrat';
+        .menu > span::before {
+            content: '';
+            top: -8px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+
+            .logoImage {
+                width: 44px;
+                height: 44px;
+            }
+
+            .logoText {
+                margin-left: 20px;
+                @include setFont(36px, normal, $extraFont, 42px, 400, $black, 0.1em);
+            }
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            justify-self: end;
+
+            .locationImage {
+                width: 18px;
+                height: 18px;
+            }
+
+            .locationText {
+                margin-left: 5px;
+                @include setFont(18px, normal, $font, 22px, 400, $black, 0.1em);
+            }
+        }
+
+        .ul {
+            display: flex;
+            list-style-type: none;
+
+            > li {
+                font-family: $font;
+
+                > a {
+                    text-decoration: none;
+                    font-size: 18px;
+                    line-height: 22px;
+                    letter-spacing: 0.1em;
+                    color: $black;
+                    color: $black;
+                }
+            }
+
+            li:nth-child(2) {
+                margin-left: 41px;
+            }
+        }
+
+        .icons {
+            display: flex;
+            flex-direction: row;
+
+            .user,
+            .cart {
+                width: 44px;
+                height: 44px;
+                cursor: pointer;
+            }
+
+            .cart {
+                margin-left: 20px;
+            }
+        }
     }
-
-    display: flex;
-    align-items: center;
-
-    ul {
-        margin-left: 20px;
-    }
 }
 
-.icons {
-    .logo {
-        margin-left: 20px;
+@media screen and (max-width: 768px) {
+    .wrapper {
+        .container {
+            min-width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 6fr 1fr;
+            grid-template-rows: 50px;
+            column-gap: 0px;
+            align-items: center;
+
+            .menu {
+                display: block !important;
+                border: none;
+                background-color: transparent;
+            }
+
+            .logo {
+                justify-self: center;
+
+                .logoImage {
+                    width: 24px;
+                }
+            
+                .logoText {
+                    font-size: 18px;
+                    margin-left: 5px;
+                }
+            }
+
+            .icons {
+                margin-left: 0px;
+                justify-self: end;
+        
+                .cart {
+                    width: 24px;
+                    margin: 0 15px;
+                }
+            }
+
+            .ul, .location, .user {
+                display: none;
+            }
+        }
     }
 }

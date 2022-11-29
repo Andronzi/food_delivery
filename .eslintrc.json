@@ -31,7 +31,8 @@
     ],
     "rules": {
         "prettier/prettier": "error",
-        "import/prefer-default-export": "no",
+        "import/prefer-default-export": "off",
+        "no-nested-ternary": "off", //looks may be great but also smth awful
         "react/boolean-prop-naming": "warn",
         "react/button-has-type": "warn",
         "react/default-props-match-prop-types": "warn",
@@ -79,7 +80,7 @@
         "react/jsx-no-literals": "off",
         "react/jsx-no-script-url": "warn",
         "react/jsx-no-useless-fragment": "warn",
-        "react/jsx-one-expression-per-line": "warn",
+        "react/jsx-one-expression-per-line": "off",
         "react/jsx-pascal-case": "warn",
         "react/jsx-props-no-multi-spaces": "warn",
         "react/jsx-props-no-spreading": "warn",
