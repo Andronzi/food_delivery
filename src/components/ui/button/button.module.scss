@@ -1,0 +1,46 @@
+@import "../../../scss/colors";
+@import "../../../scss/fonts";
+@import "../../../scss/mixins";
+
+.button {
+    border: none;
+    text-align: center;
+    @include setFont(12px, normal, $font, 14px, 600, $white, 0.1em);
+    height: 30px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.width_narrow {
+    width: 60px;
+}
+
+.width_default {
+    width: 100px;
+}
+
+.background_red {
+    background-color: $red;
+}
+
+.background_default {
+    background-color: $white;
+}
+
+.color_default {
+    color: $black;
+}
+
+.color_white {
+    color: $white;
+}
+
+// button {
+//     background: $red !important;
+//     border: none;
+//     text-align: center;
+//     @include setFont(12px, normal, $font, 14px, 600, $white, 0.1em);
+//     width: 100px;
+//     height: 30px;
+//     cursor: pointer;
+// }
