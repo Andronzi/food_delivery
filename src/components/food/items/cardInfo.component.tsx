@@ -1,5 +1,9 @@
 import React from "react";
 import styles from "@components/food/food.module.scss";
+<<<<<<< Updated upstream
+=======
+import Button from "@components/ui/button/button.component";
+>>>>>>> Stashed changes
 
 type CardInfoProps = {
   name: string;
@@ -24,9 +28,19 @@ const CardInfo: React.FC<CardInfoProps> = ({
     <p style={{ display: "none" }}>{rating || 0}</p>
 
     <div className={styles.priceContainer}>
+<<<<<<< Updated upstream
       <p>{price}₽</p>
 
       <button>В корзину</button>
+=======
+      <p className={styles.price}>{price}₽</p>
+
+      <Button
+        backgroundColor="red"
+        color="white"
+        value="В корзину"
+      />
+>>>>>>> Stashed changes
     </div>
   </div>
 );
