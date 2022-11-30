@@ -100,6 +100,7 @@
         .icons {
             display: flex;
             flex-direction: row;
+            justify-self: end;
 
             .user,
             .cart {
@@ -115,10 +116,19 @@
     }
 }
 
+@media screen and (max-width: 1420px) {
+    .wrapper {
+        .container {
+            min-width: auto;
+            margin: 0 2vw;
+        }
+    }
+}
+
 @media screen and (max-width: 768px) {
     .wrapper {
         .container {
-            min-width: 100%;
+            min-width: auto;
             display: grid;
             grid-template-columns: 1fr 6fr 1fr;
             grid-template-rows: 50px;

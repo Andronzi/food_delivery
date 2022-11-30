@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const paths = {
   src: path.resolve(__dirname, "..", "src"),
   dist: path.resolve(__dirname, "..", "dist"),
+  public: path.resolve(__dirname, "..", "public"),
 };
 
 const cssLoader = {
@@ -92,7 +93,7 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: `${paths.dist}/index.html`,
+      template: paths.public + "/index.html",
     }),
   ],
 
