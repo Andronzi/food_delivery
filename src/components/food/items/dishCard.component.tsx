@@ -18,19 +18,10 @@ const DishCard: React.FC<DishCardProps> = ({
   category,
 }) => (
   <div className={styles.dish}>
-<<<<<<< Updated upstream
-    <div className={styles.image}>
-      <img
-        alt="картинка"
-        src={src}
-      />
-    </div>
-=======
     <div
       className={styles.image}
       style={{ backgroundImage: `url(${src})` }}
     />
->>>>>>> Stashed changes
 
     <CardInfo
       category={category}
