@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "@redux/store";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import NotFound from "@components/pages/404/404.component";
 import App from "./components/pages/app/app.component";
 import "./index.css";
 
@@ -11,8 +12,9 @@ const root = createRoot(container);
 
 export const routerConfig = [
   {
-    path: "/:page",
+    path: "/",
     element: <App />,
+    errorElement: <NotFound />,
   },
 ];
 
