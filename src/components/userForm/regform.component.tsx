@@ -1,25 +1,22 @@
-// import Input from "@components/ui/input/input.component";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+import { useAppDispatch } from "@redux/hooks/hooks";
+import { User, createUser } from "@redux/slices/registerSlice";
 import styles from "./form.module.scss";
-
-interface IFormInput {
-  fullName: string;
-  gender: string;
-  email: string;
-  password: string;
-}
 
 const RegForm = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<IFormInput>({
+  } = useForm<User>({
     criteriaMode: "all",
   });
-  const onSubmit: SubmitHandler<IFormInput> = data => console.log(data);
+  const dispatch = useAppDispatch();
+  const onSubmit: SubmitHandler<User> = data => {
+    dispatch(createUser(data));
+  };
 
   return (
     <form
@@ -92,6 +89,29 @@ const RegForm = () => {
               ))
             : null
         }
+      />
+
+      <input
+        placeholder="Дата рождения"
+        type="date"
+        {...register("birthDate", {
+          required: "Данное поле не является обязательным :)",
+        })}
+      />
+
+      <input
+        placeholder="Адрес"
+        {...register("address", {
+          required: "Данное поле не является обязательным :)",
+        })}
+      />
+
+      <input
+        placeholder="Номер телефона"
+        type="tel"
+        {...register("phoneNumber", {
+          required: "Данное поле не является обязательным :)",
+        })}
       />
 
       <input

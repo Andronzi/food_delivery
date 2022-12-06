@@ -1,18 +1,18 @@
 import Navbar from "@components/navbar/navbar.component";
-import RegForm from "@components/userForm/regform.component";
+import AuthForm from "@components/userForm/authForm.component";
 import React from "react";
 import styles from "./reg.module.scss";
 
-const Registration = () => (
+const Authorisation = () => (
   <>
     <Navbar />
 
     <div className={styles.formContent}>
       <p className={styles.title}>Регистрация</p>
 
-      <RegForm />
+      <AuthForm />
     </div>
   </>
 );
 
-export default Registration;
+export default Authorisation;
