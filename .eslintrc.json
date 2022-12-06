@@ -83,7 +83,7 @@
         "react/jsx-one-expression-per-line": "off",
         "react/jsx-pascal-case": "warn",
         "react/jsx-props-no-multi-spaces": "warn",
-        "react/jsx-props-no-spreading": "warn",
+        "react/jsx-props-no-spreading": "off",
         "react/jsx-sort-default-props": "warn",
         "react/jsx-sort-props": "warn",
         "react/jsx-space-before-closing": "warn",
@@ -92,6 +92,8 @@
         "jsx-a11y/click-events-have-key-events": "off",
         "@typescript-eslint/no-unused-vars": "warn", //in prod mode it must be error
         "no-param-reassign": "off",
-        "linebreak-style": "off"
+        "linebreak-style": "off",
+        "jsx-a11y/label-has-associated-control": "off",
+        "react/require-default-props": "off"
     }
 }

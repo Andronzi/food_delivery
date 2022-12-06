@@ -1,0 +1,15 @@
+@import "src/scss/fonts";
+
+.input {
+    display: block;
+    height: 50px;
+    min-width: 412px;
+    background-color: #FFFAEB;
+    border: none;
+    font-family: $font;
+    padding-left: 10px;
+}
+
+.input::placeholder {
+    color: #7B7B7B;
+}

@@ -1,0 +1,16 @@
+@import "src/scss/fonts";
+
+.formContent {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    color: #101010;
+    font-size: 28px;
+    font-family: $font;
+    font-weight: 600;
+}
