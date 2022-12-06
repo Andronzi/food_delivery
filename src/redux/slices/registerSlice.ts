@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import type { PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export interface User {
@@ -79,6 +78,7 @@ const registerSlice = createSlice({
           state.currentRequestId === requestId
         ) {
           state.loading = "idle";
+          localStorage.setItem('token', action.payload.token);
           state.currentRequestId = undefined;
         }
       })
@@ -101,13 +101,14 @@ const registerSlice = createSlice({
         }
       })
       .addCase(authUser.fulfilled, (state: State, action) => {
+        console.log(action.payload);
         const { requestId } = action.meta;
         if (
           state.loading === "pending" &&
           state.currentRequestId === requestId
         ) {
           state.loading = "idle";
-          // state.token = action.payload;
+          localStorage.setItem('token', action.payload.token);
           state.currentRequestId = undefined;
         }
       })
