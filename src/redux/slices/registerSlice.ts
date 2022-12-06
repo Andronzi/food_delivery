@@ -21,6 +21,7 @@ type State = {
   currentRequestId: undefined | string;
   data: null | string;
   error: null | unknown;
+  user: null | User;
 };
 
 export const createUser = createAsyncThunk(
@@ -45,6 +46,25 @@ export const authUser = createAsyncThunk(
       const response = await axios.post(
         `https://food-delivery.kreosoft.ru/api/account/login`,
         authCredentials,
+      );
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  },
+);
+
+export const getProfile = createAsyncThunk(
+  "getProfile",
+  async (token: string, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `https://food-delivery.kreosoft.ru/api/account/profile`,
+        {
+          headers: {
+            Authorization: token,
+          },
+        },
       );
       return response.data;
     } catch (err) {
@@ -78,7 +98,7 @@ const registerSlice = createSlice({
           state.currentRequestId === requestId
         ) {
           state.loading = "idle";
-          localStorage.setItem('token', action.payload.token);
+          localStorage.setItem("token", action.payload.token);
           state.currentRequestId = undefined;
         }
       })
@@ -108,7 +128,36 @@ const registerSlice = createSlice({
           state.currentRequestId === requestId
         ) {
           state.loading = "idle";
-          localStorage.setItem('token', action.payload.token);
+          localStorage.setItem("token", action.payload.token);
+          state.currentRequestId = undefined;
+        }
+      })
+      .addCase(authUser.rejected, (state: State, action) => {
+        const { requestId } = action.meta;
+        if (
+          state.loading === "pending" &&
+          state.currentRequestId === requestId
+        ) {
+          state.loading = "idle";
+          state.error = action.error;
+          state.currentRequestId = undefined;
+        }
+      })
+      .addCase(getProfile.pending, (state: State, action) => {
+        if (state.loading === "idle") {
+          state.loading = "pending";
+          state.currentRequestId = action.meta.requestId;
+        }
+      })
+      .addCase(getProfile.fulfilled, (state: State, action) => {
+        console.log(action.payload);
+        const { requestId } = action.meta;
+        if (
+          state.loading === "pending" &&
+          state.currentRequestId === requestId
+        ) {
+          state.loading = "idle";
+          state.user = action.payload.user;
           state.currentRequestId = undefined;
         }
       })
