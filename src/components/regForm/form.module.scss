@@ -2,6 +2,19 @@
 
 .form {}
 
+.select {
+    margin-top: 10px;
+    display: block;
+    height: 50px;
+    min-width: 412px;
+    background-color: #FFFAEB;
+    font-size: 16px;
+    border: none;
+    font-family: $font;
+    padding-left: 10px;
+    color: #7B7B7B;
+}
+
 .submit {
     display: block;
     height: 50px;
@@ -16,5 +29,26 @@
 
 input {
     margin-top: 10px;
-    font-size: 16px;
+    display: block;
+    height: 50px;
+    min-width: 412px;
+    background-color: #FFFAEB;
+    border: none;
+    font-family: $font;
+    padding-left: 10px;
+}
+
+.input::placeholder {
+    color: #7B7B7B;
+}
+
+.error {
+    color: #bf1650;
+    font-family: $font;
+    margin-top: 4px;
+}
+
+.error::before {
+    display: inline;
+    content: "⚠ ";
 }

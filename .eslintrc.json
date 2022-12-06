@@ -94,6 +94,8 @@
         "no-param-reassign": "off",
         "linebreak-style": "off",
         "jsx-a11y/label-has-associated-control": "off",
-        "react/require-default-props": "off"
+        "react/require-default-props": "off",
+        "react/jsx-indent": "off",
+        "react/jsx-curly-newline": "off"
     }
 }
