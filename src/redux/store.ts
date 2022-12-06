@@ -5,8 +5,12 @@ import registerReducer from "@redux/slices/registerSlice";
 export const store = configureStore({
   reducer: {
     dish: dishReducer,
-    registration: registerReducer
+    registration: registerReducer,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
