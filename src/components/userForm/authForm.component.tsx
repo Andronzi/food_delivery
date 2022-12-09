@@ -1,21 +1,48 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import { useAppDispatch } from "@redux/hooks/hooks";
-import { User, authUser } from "@redux/slices/registerSlice";
+import { authUser, Auth } from "@redux/slices/registerSlice";
+import { useAppSelector } from "@redux/hooks/hooks";
+import { useNavigate } from "react-router-dom";
 import styles from "./form.module.scss";
+import useAuthRequest from "./hooks/useAuthRequest";
+import useAuthResHandler from "./hooks/useAuthResHandler";
+import { changeRedirection } from "@redux/slices/profileSlice";
 
 const AuthForm = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<User>({
+  } = useForm<Auth>({
     criteriaMode: "all",
   });
-  const dispatch = useAppDispatch();
-  const onSubmit: SubmitHandler<User> = data => {
-    dispatch(authUser(data));
+  const navigate = useNavigate();
+  const profile = useAppSelector(state => state.profile);
+  const registration = useAppSelector(state => state.registration);
+  const { handleResponse } = useAuthResHandler();
+
+  React.useEffect(() => {
+    if (
+      registration.token != null &&
+      !registration.errorMessage &&
+      !profile.user.email
+    ) {
+      handleResponse();
+    }
+  }, [registration.token]);
+
+  React.useEffect(() => {
+    console.log(profile.user?.email);
+    if (profile.user.email != null && !profile.isRedirected) {
+      changeRedirection();
+      navigate("/");
+    }
+  }, [profile.user?.email]);
+
+  const { sendRequest } = useAuthRequest();
+  const onSubmit: SubmitHandler<Auth> = async data => {
+    await sendRequest(authUser, data);
   };
 
   return (

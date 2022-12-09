@@ -1,13 +1,9 @@
-/* eslint-disable react/jsx-max-depth */
 import React from "react";
-import Navbar from "@components/navbar/navbar.component";
 import pizza from "@images/pizza.svg";
 import styles from "./404.module.scss";
 
 const NotFound = () => (
-  <>
-    <Navbar />
-
+  <div>
     <div className={styles.content}>
       <p className={styles.title}>44</p>
 
@@ -21,7 +17,7 @@ const NotFound = () => (
         Ой... <br className={styles.br} /> Страница не найдена
       </p>
     </div>
-  </>
+  </div>
 );
 
 export default NotFound;
