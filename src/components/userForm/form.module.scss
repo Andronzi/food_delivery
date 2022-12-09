@@ -1,0 +1,67 @@
+@import "src/scss/fonts";
+
+.select {
+    margin-top: 10px;
+    display: block;
+    height: 50px;
+    min-width: 412px;
+    background-color: #FFFAEB;
+    font-size: 16px;
+    border: none;
+    font-family: $font;
+    padding-left: 10px;
+    color: #7B7B7B;
+}
+
+.submit {
+    display: block;
+    height: 50px;
+    min-width: 412px;
+    color: #FFFFFF;
+    background-color: #FFC107;
+    border: none;
+    font-family: $font;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+input {
+    margin-top: 10px;
+    display: block;
+    height: 50px;
+    min-width: 412px;
+    background-color: #FFFAEB;
+    border: none;
+    font-family: $font;
+    padding-left: 10px;
+}
+
+.input::placeholder {
+    color: #7B7B7B;
+}
+
+.error {
+    color: #bf1650;
+    font-family: $font;
+    margin-top: 4px;
+}
+
+.error::before {
+    display: inline;
+    content: "⚠ ";
+}
+
+@media screen and (max-width: 600px) {
+    input {
+        min-width: 300px;
+        max-width: 80%;
+        height: 40px;
+    }
+
+    .submit {
+        min-width: 300px;
+        max-width: 80%;
+        height: 40px;
+        font-size: 13.33px;
+    }
+}
