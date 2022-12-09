@@ -17,18 +17,19 @@ const Icons = ({ name }: Props): JSX.Element => {
   return (
     <div className={styles.icons}>
       <img
-        onClick={handleProfileImageClick}
         alt={user}
         className={styles.user}
+        onClick={handleProfileImageClick}
         src={user}
       />
+
       <div
         className={`${styles.userPanel} ${
           visibility === true
             ? styles.userPanelVisible
             : styles.userPanelUnVisible
         }`}>
-        <p className={styles.title}>{name ? name : "Гость"}</p>
+        <p className={styles.title}>{name || "Гость"}</p>
         {name === false ? (
           <>
             <Link to="registration">

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-max-depth */
 import React from "react";
 import pizza from "@images/pizza.svg";
 import styles from "./404.module.scss";

@@ -30,7 +30,6 @@
         "prettier"
     ],
     "rules": {
-        "prettier/prettier": "error",
         "import/prefer-default-export": "off",
         "no-nested-ternary": "off", //looks may be great but also smth awful
         "react/boolean-prop-naming": "warn",
@@ -73,7 +72,6 @@
         "react/jsx-indent-props": "warn",
         "react/jsx-max-depth": "warn",
         "react/jsx-max-props-per-line": "warn",
-        "react/jsx-newline": "warn",
         "react/jsx-no-bind": "warn",
         "react/jsx-no-constructed-context-values": "warn",
         "react/jsx-no-leaked-render": "warn",
@@ -97,5 +95,8 @@
         "react/require-default-props": "off",
         "react/jsx-indent": "off",
         "react/jsx-curly-newline": "off",
+        "react/jsx-newline": "off",
+        "prettier/prettier": ["error", { "endOfLine": "auto" }],
+        "jsx-a11y/no-noninteractive-element-interactions": "off" //in prod must be warn or error
     }
 }

@@ -4,10 +4,10 @@ import { ErrorMessage } from "@hookform/error-message";
 import { useAppSelector } from "@redux/hooks/hooks";
 import { User, createUser } from "@redux/slices/registerSlice";
 import { useNavigate } from "react-router-dom";
+import { changeRedirection } from "@redux/slices/profileSlice";
 import styles from "./form.module.scss";
 import useAuthRequest from "./hooks/useAuthRequest";
 import useAuthResHandler from "./hooks/useAuthResHandler";
-import { changeRedirection } from "@redux/slices/profileSlice";
 
 const RegForm = () => {
   const {

@@ -4,10 +4,10 @@ import { ErrorMessage } from "@hookform/error-message";
 import { authUser, Auth } from "@redux/slices/registerSlice";
 import { useAppSelector } from "@redux/hooks/hooks";
 import { useNavigate } from "react-router-dom";
+import { changeRedirection } from "@redux/slices/profileSlice";
 import styles from "./form.module.scss";
 import useAuthRequest from "./hooks/useAuthRequest";
 import useAuthResHandler from "./hooks/useAuthResHandler";
-import { changeRedirection } from "@redux/slices/profileSlice";
 
 const AuthForm = () => {
   const {
@@ -33,7 +33,6 @@ const AuthForm = () => {
   }, [registration.token]);
 
   React.useEffect(() => {
-    console.log(profile.user?.email);
     if (profile.user.email != null && !profile.isRedirected) {
       changeRedirection();
       navigate("/");

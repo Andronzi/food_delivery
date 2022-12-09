@@ -28,8 +28,8 @@ const App = () => (
       />
 
       <Route
-        path="*"
         element={<NotFound />}
+        path="*"
       />
     </Routes>
   </div>

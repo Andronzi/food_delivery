@@ -7,7 +7,7 @@ export const store = configureStore({
   reducer: {
     dish: dishReducer,
     registration: registerReducer,
-    profile: profileReducer
+    profile: profileReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
