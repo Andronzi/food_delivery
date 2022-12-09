@@ -9,22 +9,6 @@ import "./index.css";
 const container = document.getElementById("root") as HTMLElement;
 const root = createRoot(container);
 
-// export const routerConfig = [
-//   {
-//     path: "/:page",
-//     element: <App />,
-//     errorElement: <NotFound />,
-//   },
-//   {
-//     path: "/registration",
-//     element: <Registration />,
-//   },
-//   {
-//     path: "/auth",
-//     element: <Auth />,
-//   },
-// ];
-
 root.render(
   <Provider store={store}>
     <BrowserRouter>
