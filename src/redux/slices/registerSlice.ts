@@ -19,9 +19,9 @@ export interface Auth {
 type State = {
   loading: string;
   currentRequestId: undefined | string;
-  data: null | string;
   error: null | unknown;
-  user: null | User;
+  errorMessage: null | string;
+  token: null | string;
 };
 
 export const createUser = createAsyncThunk(
@@ -62,7 +62,7 @@ export const getProfile = createAsyncThunk(
         `https://food-delivery.kreosoft.ru/api/account/profile`,
         {
           headers: {
-            Authorization: token,
+            Authorization: `Bearer ${token}`,
           },
         },
       );
@@ -76,11 +76,12 @@ export const getProfile = createAsyncThunk(
 const registerSlice = createSlice({
   name: "register",
   initialState: {
-    user: {} as User,
     loading: "idle",
-    data: null,
     currentRequestId: undefined,
     error: null,
+    errorMessage: null,
+    statusCode: null,
+    token: null || localStorage.getItem("token"),
   } as State,
   reducers: {},
   extraReducers: builder => {
@@ -89,6 +90,8 @@ const registerSlice = createSlice({
         if (state.loading === "idle") {
           state.loading = "pending";
           state.currentRequestId = action.meta.requestId;
+          state.error = null;
+          state.errorMessage = null;
         }
       })
       .addCase(createUser.fulfilled, (state: State, action) => {
@@ -98,12 +101,15 @@ const registerSlice = createSlice({
           state.currentRequestId === requestId
         ) {
           state.loading = "idle";
-          localStorage.setItem("token", action.payload.token);
+          state.error = null;
           state.currentRequestId = undefined;
+          state.errorMessage = null;
+          state.token = action.payload.token;
+          localStorage.setItem("token", action.payload.token);
         }
       })
       .addCase(createUser.rejected, (state: State, action: any) => {
-        // console.log(action.payload.response.data);
+        console.log(action);
         const { requestId } = action.meta;
         if (
           state.loading === "pending" &&
@@ -112,27 +118,33 @@ const registerSlice = createSlice({
           state.loading = "idle";
           state.error = action.error;
           state.currentRequestId = undefined;
+          state.errorMessage = action.payload.message;
         }
       })
       .addCase(authUser.pending, (state: State, action) => {
         if (state.loading === "idle") {
           state.loading = "pending";
           state.currentRequestId = action.meta.requestId;
+          state.error = null;
+          state.errorMessage = null;
         }
       })
       .addCase(authUser.fulfilled, (state: State, action) => {
-        console.log(action.payload);
         const { requestId } = action.meta;
         if (
           state.loading === "pending" &&
           state.currentRequestId === requestId
         ) {
           state.loading = "idle";
-          localStorage.setItem("token", action.payload.token);
+          state.error = null;
           state.currentRequestId = undefined;
+          state.errorMessage = null;
+          state.token = action.payload.token;
+          localStorage.setItem("token", action.payload.token);
         }
       })
-      .addCase(authUser.rejected, (state: State, action) => {
+      .addCase(authUser.rejected, (state: State, action: any) => {
+        console.log(action);
         const { requestId } = action.meta;
         if (
           state.loading === "pending" &&
@@ -141,27 +153,30 @@ const registerSlice = createSlice({
           state.loading = "idle";
           state.error = action.error;
           state.currentRequestId = undefined;
+          state.errorMessage = action.payload.message;
         }
       })
       .addCase(getProfile.pending, (state: State, action) => {
         if (state.loading === "idle") {
           state.loading = "pending";
           state.currentRequestId = action.meta.requestId;
+          state.error = null;
+          state.errorMessage = null;
         }
       })
       .addCase(getProfile.fulfilled, (state: State, action) => {
-        console.log(action.payload);
         const { requestId } = action.meta;
         if (
           state.loading === "pending" &&
           state.currentRequestId === requestId
         ) {
           state.loading = "idle";
-          state.user = action.payload.user;
+          state.error = null;
           state.currentRequestId = undefined;
+          state.errorMessage = null;
         }
       })
-      .addCase(authUser.rejected, (state: State, action) => {
+      .addCase(getProfile.rejected, (state: State, action: any) => {
         const { requestId } = action.meta;
         if (
           state.loading === "pending" &&
@@ -170,6 +185,7 @@ const registerSlice = createSlice({
           state.loading = "idle";
           state.error = action.error;
           state.currentRequestId = undefined;
+          state.errorMessage = action.payload.message;
         }
       });
   },
