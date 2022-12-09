@@ -1,7 +1,5 @@
 @import "src/scss/fonts";
 
-.form {}
-
 .select {
     margin-top: 10px;
     display: block;
@@ -51,4 +49,19 @@ input {
 .error::before {
     display: inline;
     content: "⚠ ";
+}
+
+@media screen and (max-width: 600px) {
+    input {
+        min-width: 300px;
+        max-width: 80%;
+        height: 40px;
+    }
+
+    .submit {
+        min-width: 300px;
+        max-width: 80%;
+        height: 40px;
+        font-size: 13.33px;
+    }
 }
