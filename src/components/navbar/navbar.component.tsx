@@ -6,6 +6,7 @@ import Logo from "@components/navbar/items/logo.component";
 import Location from "./items/location.component";
 import styles from "./navbar.module.scss";
 import Icons from "./items/icons.module";
+<<<<<<< Updated upstream
 
 const Navbar: React.FC = () => (
   <div className={styles.wrapper}>
@@ -15,16 +16,28 @@ const Navbar: React.FC = () => (
         htmlFor="menu__toggle">
         <span />
       </label>
+=======
+import Hamburger from "./items/hamburger.component";
+import { useAppSelector } from "@redux/hooks/hooks";
 
-      <Logo />
+const Navbar: React.FC = () => {
+  const name = useAppSelector(state => state.profile.user.fullName);
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        <Hamburger />
+>>>>>>> Stashed changes
 
-      <List />
+        <Logo />
 
-      <Location />
+        <List />
 
-      <Icons />
+        <Location />
+
+        <Icons name={name ? name : false} />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Navbar;
