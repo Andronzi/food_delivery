@@ -3,6 +3,9 @@ import user from "@icons/user.svg";
 import cart from "@icons/cart.svg";
 import styles from "@components/navbar/navbar.module.scss";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "@redux/hooks/hooks";
+import { logout } from "@redux/slices/registerSlice";
+import { deleteUser } from "@redux/slices/profileSlice";
 
 interface Props {
   name: string | boolean;
@@ -10,8 +13,15 @@ interface Props {
 
 const Icons = ({ name }: Props): JSX.Element => {
   const [visibility, setVisibility] = React.useState(false);
-  const handleProfileImageClick = () => {
+  const dispatch = useAppDispatch();
+
+  const handleLinkClick = () => {
     setVisibility(prevState => !prevState);
+  };
+
+  const handleLogoutLinkClick = async () => {
+    await dispatch(logout(localStorage.getItem("token")!));
+    dispatch(deleteUser());
   };
 
   return (
@@ -19,7 +29,7 @@ const Icons = ({ name }: Props): JSX.Element => {
       <img
         alt={user}
         className={styles.user}
-        onClick={handleProfileImageClick}
+        onClick={handleLinkClick}
         src={user}
       />
 
@@ -30,22 +40,36 @@ const Icons = ({ name }: Props): JSX.Element => {
             : styles.userPanelUnVisible
         }`}>
         <p className={styles.title}>{name || "Гость"}</p>
+
         {name === false ? (
           <>
-            <Link to="registration">
+            <Link
+              onClick={handleLinkClick}
+              to="registration">
               <p className={styles.text}>Зарегистрироваться</p>
             </Link>
-            <Link to="auth">
+
+            <Link
+              onClick={handleLinkClick}
+              to="auth">
               <p className={styles.text}>Авторизоваться</p>
             </Link>
           </>
         ) : (
           <>
             <p className={styles.text}>Мои данные</p>
-            <Link to="orders">
+
+            <Link
+              onClick={handleLinkClick}
+              to="orders">
               <p className={styles.text}>Мои заказы</p>
             </Link>
-            <p className={styles.text}>Выйти</p>
+
+            <p
+              className={styles.text}
+              onClick={handleLogoutLinkClick}>
+              Выйти
+            </p>
           </>
         )}
       </div>
