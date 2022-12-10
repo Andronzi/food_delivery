@@ -4,7 +4,6 @@ import { ErrorMessage } from "@hookform/error-message";
 import { useAppSelector } from "@redux/hooks/hooks";
 import { User, createUser } from "@redux/slices/registerSlice";
 import { useNavigate } from "react-router-dom";
-import { changeRedirection } from "@redux/slices/profileSlice";
 import styles from "./form.module.scss";
 import useAuthRequest from "./hooks/useAuthRequest";
 import useAuthResHandler from "./hooks/useAuthResHandler";
@@ -33,9 +32,7 @@ const RegForm = () => {
   }, [registration.token]);
 
   React.useEffect(() => {
-    console.log(profile.user?.email);
-    if (profile.user.email != null && !profile.isRedirected) {
-      changeRedirection();
+    if (profile.user.email != null) {
       navigate("/");
     }
   }, [profile.user?.email]);

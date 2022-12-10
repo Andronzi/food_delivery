@@ -47,11 +47,11 @@ const profileSlice = createSlice({
     currentRequestId: undefined,
     error: null,
     errorMessage: null,
-    isRedirected: false
+    isRedirected: false,
   } as ProfileState,
   reducers: {
-    changeRedirection: (state) => {
-      state.isRedirected = true;
+    deleteUser: state => {
+      state.user = {} as User;
     },
   },
   extraReducers: builder => {
@@ -65,7 +65,6 @@ const profileSlice = createSlice({
         }
       })
       .addCase(getProfile.fulfilled, (state: ProfileState, action) => {
-        console.log(action)
         const { requestId } = action.meta;
         if (
           state.loading === "pending" &&
@@ -73,14 +72,12 @@ const profileSlice = createSlice({
         ) {
           state.loading = "idle";
           state.user = action.payload;
-          state.user.email = action.payload.email;
           state.error = null;
           state.currentRequestId = undefined;
           state.errorMessage = null;
         }
       })
       .addCase(getProfile.rejected, (state: ProfileState, action: any) => {
-        console.log(action)
         const { requestId } = action.meta;
         if (
           state.loading === "pending" &&
@@ -95,5 +92,5 @@ const profileSlice = createSlice({
   },
 });
 
-export const { changeRedirection } = profileSlice.actions;
+export const { deleteUser } = profileSlice.actions;
 export default profileSlice.reducer;

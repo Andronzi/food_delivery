@@ -59,17 +59,19 @@ export const logout = createAsyncThunk(
   async (token: string, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `https://food-delivery.kreosoft.ru/api/account/logout`, {
+        `https://food-delivery.kreosoft.ru/api/account/logout`,
+        {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         },
-      )
+      );
       return response.data;
     } catch (err) {
       return rejectWithValue(err);
     }
-})
+  },
+);
 
 const registerSlice = createSlice({
   name: "register",

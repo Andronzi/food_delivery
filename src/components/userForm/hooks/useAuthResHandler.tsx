@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@redux/hooks/hooks";
-import { getProfile } from "@redux/slices/registerSlice";
+import { getProfile } from "@redux/slices/profileSlice";
 
 const useAuthResHandler = () => {
   const registration = useAppSelector(state => state.registration);
