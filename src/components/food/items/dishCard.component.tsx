@@ -3,6 +3,7 @@ import styles from "@components/food/food.module.scss";
 import CardInfo from "./cardInfo.component";
 
 type DishCardProps = {
+  id: string;
   src: string;
   name: string;
   rating: number;
@@ -11,6 +12,7 @@ type DishCardProps = {
 };
 
 const DishCard: React.FC<DishCardProps> = ({
+  id,
   src,
   name,
   rating,
@@ -25,6 +27,7 @@ const DishCard: React.FC<DishCardProps> = ({
 
     <CardInfo
       category={category}
+      id={id}
       name={name}
       price={price}
       rating={rating}

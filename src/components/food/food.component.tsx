@@ -35,8 +35,9 @@ const Food: React.FC = () => {
       <div className={styles.container}>
         {data.dishes.map(dish => (
           <DishCard
-            key={dish.name}
+            key={dish.id}
             category={dish.category}
+            id={dish.id}
             name={dish.name}
             price={dish.price}
             rating={dish.rating}
