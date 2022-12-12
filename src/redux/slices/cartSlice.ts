@@ -41,8 +41,9 @@ export const addDish = createAsyncThunk(
   "addDishToCart",
   async (params: { token: string; dishId: number }, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
+      const response = await axios.post(
         `https://food-delivery.kreosoft.ru/api/basket/dish/${params.dishId}`,
+        {},
         {
           headers: {
             Authorization: `Bearer ${params.token}`,
