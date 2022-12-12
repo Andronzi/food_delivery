@@ -57,6 +57,28 @@ export const addDish = createAsyncThunk(
   },
 );
 
+export const deleteDish = createAsyncThunk(
+  "deleteDish",
+  async (
+    params: { token: string; dishId: string; increase: boolean },
+    { rejectWithValue },
+  ) => {
+    try {
+      const response = await axios.delete(
+        `https://food-delivery.kreosoft.ru/api/basket/dish/${params.dishId}?increase=${params.increase}`,
+        {
+          headers: {
+            Authorization: `Bearer ${params.token}`,
+          },
+        },
+      );
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  },
+);
+
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
@@ -96,6 +118,7 @@ const cartSlice = createSlice({
           state.loading === "pending" &&
           state.currentRequestId === requestId
         ) {
+          state.dishes = [];
           state.loading = "idle";
           state.error = action.error.message;
           state.currentRequestId = undefined;
@@ -134,6 +157,38 @@ const cartSlice = createSlice({
           state.errorMessage = action.payload.message;
         }
       })
+      .addCase(deleteDish.pending, (state: CartState, action) => {
+        if (state.loading === "idle") {
+          state.loading = "pending";
+          state.currentRequestId = action.meta.requestId;
+          state.error = null;
+          state.errorMessage = null;
+        }
+      })
+      .addCase(deleteDish.fulfilled, (state: CartState, action) => {
+        const { requestId } = action.meta;
+        if (
+          state.loading === "pending" &&
+          state.currentRequestId === requestId
+        ) {
+          state.loading = "idle";
+          state.error = null;
+          state.currentRequestId = undefined;
+          state.errorMessage = null;
+        }
+      })
+      .addCase(deleteDish.rejected, (state: CartState, action: any) => {
+        const { requestId } = action.meta;
+        if (
+          state.loading === "pending" &&
+          state.currentRequestId === requestId
+        ) {
+          state.loading = "idle";
+          state.error = action.error.message;
+          state.currentRequestId = undefined;
+          state.errorMessage = action.payload.message;
+        }
+      });
   },
 });
 

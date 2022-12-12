@@ -21,6 +21,7 @@ const Cart = () => {
         <div className={styles.cartElement}>
           <CartItem
             amount={cartElement.amount}
+            dishId={cartElement.id}
             image={cartElement.image}
             name={cartElement.name}
             price={cartElement.totalPrice}

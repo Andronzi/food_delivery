@@ -21,7 +21,6 @@ const CardInfo: React.FC<CardInfoProps> = ({
 }) => {
   const dispatch = useAppDispatch();
   const addToBasket = () => {
-    console.log("click");
     dispatch(addDish({ token: localStorage.getItem("token")!, dishId: id }));
   };
   return (
