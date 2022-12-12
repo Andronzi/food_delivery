@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "@components/food/food.module.scss";
-<<<<<<< Updated upstream
-=======
 import Button from "@components/ui/button/button.component";
->>>>>>> Stashed changes
+import { useAppDispatch } from "@redux/hooks/hooks";
+import { addDish } from "@redux/slices/cartSlice";
 
 type CardInfoProps = {
+  id: string;
   name: string;
   category: string;
   rating: number;
@@ -13,36 +13,38 @@ type CardInfoProps = {
 };
 
 const CardInfo: React.FC<CardInfoProps> = ({
+  id,
   name,
   category,
   rating,
   price,
-}) => (
-  <div className={styles.cardInfo}>
-    <div className={styles.infoContainer}>
-      <h2 className={styles.title}>{name}</h2>
+}) => {
+  const dispatch = useAppDispatch();
+  const addToBasket = () => {
+    dispatch(addDish(id));
+  };
+  return (
+    <div className={styles.cardInfo}>
+      <div className={styles.infoContainer}>
+        <h2 className={styles.title}>{name}</h2>
 
-      <p className={styles.category}>{category}</p>
+        <p className={styles.category}>{category}</p>
+      </div>
+
+      <p style={{ display: "none" }}>{rating || 0}</p>
+
+      <div className={styles.priceContainer}>
+        <p className={styles.price}>{price}₽</p>
+
+        <Button
+          backgroundColor="red"
+          color="white"
+          onClick={addToBasket}
+          value="В корзину"
+        />
+      </div>
     </div>
-
-    <p style={{ display: "none" }}>{rating || 0}</p>
-
-    <div className={styles.priceContainer}>
-<<<<<<< Updated upstream
-      <p>{price}₽</p>
-
-      <button>В корзину</button>
-=======
-      <p className={styles.price}>{price}₽</p>
-
-      <Button
-        backgroundColor="red"
-        color="white"
-        value="В корзину"
-      />
->>>>>>> Stashed changes
-    </div>
-  </div>
-);
+  );
+};
 
 export default CardInfo;

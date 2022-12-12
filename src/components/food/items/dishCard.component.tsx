@@ -3,6 +3,7 @@ import styles from "@components/food/food.module.scss";
 import CardInfo from "./cardInfo.component";
 
 type DishCardProps = {
+  id: string;
   src: string;
   name: string;
   rating: number;
@@ -11,6 +12,7 @@ type DishCardProps = {
 };
 
 const DishCard: React.FC<DishCardProps> = ({
+  id,
   src,
   name,
   rating,
@@ -18,22 +20,14 @@ const DishCard: React.FC<DishCardProps> = ({
   category,
 }) => (
   <div className={styles.dish}>
-<<<<<<< Updated upstream
-    <div className={styles.image}>
-      <img
-        alt="картинка"
-        src={src}
-      />
-    </div>
-=======
     <div
       className={styles.image}
       style={{ backgroundImage: `url(${src})` }}
     />
->>>>>>> Stashed changes
 
     <CardInfo
       category={category}
+      id={id}
       name={name}
       price={price}
       rating={rating}
