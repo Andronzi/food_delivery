@@ -74,11 +74,13 @@ const Icons = ({ name }: Props): JSX.Element => {
         )}
       </div>
 
-      <img
-        alt={cart}
-        className={styles.cart}
-        src={cart}
-      />
+      <Link to="cart">
+        <img
+          alt={cart}
+          className={styles.cart}
+          src={cart}
+        />
+      </Link>
     </div>
   );
 };

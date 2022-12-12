@@ -5,6 +5,7 @@ import Food from "@components/food/food.component";
 import { Route, Routes } from "react-router-dom";
 import { useAppDispatch } from "@redux/hooks/hooks";
 import { getProfile } from "@redux/slices/profileSlice";
+import Cart from "../cart/cart.component";
 import Authorisation from "../registration/auth.component";
 import Registration from "../registration/registration.component";
 import NotFound from "../404/404.component";
@@ -33,6 +34,11 @@ const App = () => {
         <Route
           element={<Registration />}
           path="registration"
+        />
+
+        <Route
+          element={<Cart />}
+          path="cart"
         />
 
         <Route
