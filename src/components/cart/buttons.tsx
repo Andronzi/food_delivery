@@ -2,29 +2,37 @@ import React from "react";
 import plus from "@icons/add.svg";
 import minus from "@icons/minus.svg";
 import styles from "./cart.module.scss";
+import { useCartRequests } from "./hooks/useCartRequests";
 
 interface ButtonsProps {
   amount: number;
+  dishId: string;
 }
 
-const Buttons: React.FC<ButtonsProps> = ({ amount }) => (
-  <div className={styles.buttons}>
-    <img
-      alt="Добавить"
-      className={styles.plus}
-      src={plus}
-    />
-    <button
-      className={styles.shadow}
-      type="button">
-      {amount}
-    </button>
-    <img
-      alt="Убрать"
-      className={styles.minus}
-      src={minus}
-    />
-  </div>
-);
+const Buttons: React.FC<ButtonsProps> = ({ amount, dishId }) => {
+  const { requestDishDeletion, requestDishAddition } = useCartRequests();
+
+  return (
+    <div className={styles.buttons}>
+      <img
+        alt="Добавить"
+        className={styles.plus}
+        onClick={() => requestDishAddition(dishId)}
+        src={plus}
+      />
+      <button
+        className={styles.shadow}
+        type="button">
+        {amount}
+      </button>
+      <img
+        alt="Убрать"
+        className={styles.minus}
+        onClick={() => requestDishDeletion(dishId, true)}
+        src={minus}
+      />
+    </div>
+  );
+};
 
 export default Buttons;

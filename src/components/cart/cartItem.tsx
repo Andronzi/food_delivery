@@ -37,7 +37,10 @@ const CartItem: React.FC<ItemProps> = ({
         onClick={() => requestDishDeletion(dishId, false)}
         src={close}
       />
-      <Buttons amount={amount} />
+      <Buttons
+        amount={amount}
+        dishId={dishId}
+      />
     </div>
   );
 };

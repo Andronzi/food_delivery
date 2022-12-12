@@ -1,5 +1,5 @@
 import { useAppDispatch } from "@redux/hooks/hooks";
-import { deleteDish, getCartDishes } from "@redux/slices/cartSlice";
+import { addDish, deleteDish, getCartDishes } from "@redux/slices/cartSlice";
 
 export const useCartRequests = () => {
   const dispatch = useAppDispatch();
@@ -14,7 +14,18 @@ export const useCartRequests = () => {
     }
   };
 
+  const requestDishAddition = async (dishId: string) => {
+    const response = await dispatch(
+      addDish({ token: localStorage.getItem("token")!, dishId }),
+    );
+
+    if (response.meta.requestStatus === "fulfilled") {
+      dispatch(getCartDishes(localStorage.getItem("token")!));
+    }
+  };
+
   return {
     requestDishDeletion,
+    requestDishAddition,
   };
 };
