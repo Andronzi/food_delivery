@@ -97,6 +97,6 @@
         "react/jsx-curly-newline": "off",
         "react/jsx-newline": "off",
         "prettier/prettier": ["error", { "endOfLine": "auto" }],
-        "jsx-a11y/no-noninteractive-element-interactions": "off" //in prod must be warn or error
+        "jsx-a11y/no-noninteractive-element-interactions": "off",//in prod must be warn or error
     }
 }

@@ -23,7 +23,15 @@
     background-color: $red;
 }
 
+.background_black {
+    background-color: $black;
+}
+
 .background_default {
+    background-color: $white;
+}
+
+.background_white {
     background-color: $white;
 }
 
@@ -33,6 +41,10 @@
 
 .color_white {
     color: $white;
+}
+
+.color_black {
+    color: $black;
 }
 
 // button {

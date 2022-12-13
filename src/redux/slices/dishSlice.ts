@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { assignFilters } from "@components/food/helpers/filter";
 
 export interface Dish {
   id: string;
@@ -30,11 +31,37 @@ const initialState = {} as State;
 
 export const fetchDishes = createAsyncThunk(
   "dishes/fetchDishesByPage",
-  async (pageNumber: number, { rejectWithValue }) => {
+  async (
+    searchParams: any,
+    { rejectWithValue },
+  ) => {
     try {
-      const response = await axios.get(
-        `https://food-delivery.kreosoft.ru/api/dish?vegetarian=false&page=${pageNumber}`,
-      );
+      // @ts-ignore
+      console.log(searchParams);
+      //@ts-ignore
+      const params = await assignFilters(searchParams);
+      // console.log("ПАРАМЕТРЫ " + params.categories.map((element) => element.substring(1, element.length - 1)).join("");
+
+      console.log("ИТОГОВЫЕ" + params.vegetarian + params.page + params.categories);
+
+      let URL = "";
+
+      if (!params.categories && !params.sorting) {
+        URL = `https://food-delivery.kreosoft.ru/api/dish?page=${params.page || 1}&vegetarian=${params.vegetarian}`;
+      } else if (params.categories && params.sorting) {
+        URL = `https://food-delivery.kreosoft.ru/api/dish?page=${params.page || 1}&vegetarian=${params.vegetarian}&categories=${params.categories.join('&categories=')}&sorting=${params.sorting}`;
+      } else if (params.categories && !params.sorting) {
+        URL = `https://food-delivery.kreosoft.ru/api/dish?page=${params.page || 1}&vegetarian=${params.vegetarian}&categories=${params.categories.join('&categories=')}`;
+      } else {
+        URL = `https://food-delivery.kreosoft.ru/api/dish?page=${params.page || 1}&vegetarian=${params.vegetarian}&sorting=${params.sorting}`;
+      }
+
+      console.log(URL)
+
+      const response = await axios.get(URL);
+
+      console.log(response.data);
+
       return response.data;
     } catch (err) {
       return rejectWithValue(err);

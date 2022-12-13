@@ -1,30 +1,31 @@
 import React from "react";
 import styles from "@components/food/food.module.scss";
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@redux/store";
 import Button from "@components/ui/button/button.component";
 import DishCard from "./items/dishCard.component";
 import { usePages } from "./hooks/usePages";
-import { useDishes } from "./hooks/useDishes";
+// import { useDishes } from "./hooks/useDishes";
 import { useCustomNavigation } from "./hooks/useCustomNavigation";
+import Filters from "./filters/filters.component";
+import { useAppDispatch } from "@redux/hooks/hooks";
+import { fetchDishes } from "@redux/slices/dishSlice";
 
 const Food: React.FC = () => {
-  const { page } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const data = useSelector((state: RootState) => state.dish);
+  const dispatch = useAppDispatch();
   const { pages } = usePages(data);
   const { handlePrevBtnClick, handleNextBtnClick, handlePageBtnClick } =
     useCustomNavigation();
 
-  const changePage = (pageNumber: string | undefined) => {
-    if (typeof pageNumber === "string") {
-      return +pageNumber;
-    }
-
-    return 1;
-  };
-
-  useDishes(changePage(page));
+  React.useEffect(() => {
+    // @ts-ignore
+    console.log([...searchParams]);
+    // @ts-ignore
+    dispatch(fetchDishes([...searchParams]));
+  }, [searchParams, setSearchParams]);
 
   if (!data.dishes) {
     return <div>No dishes</div>;
@@ -32,6 +33,7 @@ const Food: React.FC = () => {
 
   return (
     <div>
+      <Filters />
       <div className={styles.container}>
         {data.dishes.map(dish => (
           <DishCard
@@ -51,7 +53,8 @@ const Food: React.FC = () => {
           backgroundColor="white"
           color="black"
           handleClick={(event: React.MouseEvent) => {
-            handlePrevBtnClick(event, changePage(page));
+            // @ts-ignore
+            handlePrevBtnClick(event, [...searchParams], setSearchParams);
           }}
           value="<"
           width="narrow"
@@ -61,9 +64,16 @@ const Food: React.FC = () => {
           {pages.map(pageNumber => (
             <li key={pageNumber}>
               <Button
-                backgroundColor="white"
-                color="black"
-                handleClick={handlePageBtnClick}
+                backgroundColor={`${
+                  pageNumber == data.pagination.current ? "black" : "white"
+                }`}
+                color={`${
+                  pageNumber == data.pagination.current ? "white" : "black"
+                }`}
+                handleClick={event =>
+                  // @ts-ignore
+                  handlePageBtnClick(event, [...searchParams], setSearchParams)
+                }
                 value={pageNumber}
                 width="narrow"
               />
@@ -75,7 +85,8 @@ const Food: React.FC = () => {
           backgroundColor="white"
           color="black"
           handleClick={(event: React.MouseEvent) =>
-            handleNextBtnClick(event, changePage(page))
+            // @ts-ignore
+            handleNextBtnClick(event, [...searchParams], setSearchParams)
           }
           value=">"
           width="narrow"
