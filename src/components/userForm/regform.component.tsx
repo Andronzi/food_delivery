@@ -47,6 +47,7 @@ const RegForm = () => {
       className={styles.form}
       onSubmit={handleSubmit(onSubmit)}>
       <input
+        className={styles.input}
         placeholder="ФИО"
         {...register("fullName", {
           required: true,
@@ -66,6 +67,7 @@ const RegForm = () => {
       </select>
 
       <input
+        className={styles.input}
         placeholder="Email"
         {...register("email", {
           required: "Данное поле является обязательным",
@@ -93,6 +95,7 @@ const RegForm = () => {
       />
 
       <input
+        className={styles.input}
         type="password"
         placeholder="Пароль"
         {...register("password", {
@@ -117,6 +120,7 @@ const RegForm = () => {
       />
 
       <input
+        className={styles.input}
         placeholder="Дата рождения"
         type="date"
         {...register("birthDate", {
@@ -125,6 +129,7 @@ const RegForm = () => {
       />
 
       <input
+        className={styles.input}
         placeholder="Адрес"
         {...register("address", {
           required: "Данное поле не является обязательным :)",
@@ -132,6 +137,7 @@ const RegForm = () => {
       />
 
       <input
+        className={styles.input}
         placeholder="Номер телефона"
         type="tel"
         {...register("phoneNumber", {

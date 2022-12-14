@@ -25,7 +25,7 @@ const DishCard: React.FC<DishCardProps> = ({
   const navigate = useNavigate();
   const changeText = (description: string) => {
     if (description.length > 40) {
-      return description.substring(1, 40) + "...";
+      return description.substring(0, 40) + "...";
     } else {
       return description + "...";
     }

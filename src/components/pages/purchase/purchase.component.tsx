@@ -55,6 +55,7 @@ const Purchase = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputs}>
           <input
+            className={styles.input}
             placeholder="Адрес"
             {...register("address")}
           />

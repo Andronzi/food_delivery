@@ -41,6 +41,7 @@ const Input = ({
     <>
       {patternValue ? (
         <input
+          className={styles.input}
           type={type}
           value={state}
           {...register(label, {

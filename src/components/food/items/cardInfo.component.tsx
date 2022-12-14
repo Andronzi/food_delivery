@@ -38,7 +38,7 @@ const CardInfo: React.FC<CardInfoProps> = ({
 
       <StarRating currentRating={rating} />
 
-      <p>{description}</p>
+      <p className={styles.description}>{description}</p>
 
       <div className={styles.priceContainer}>
         <p className={styles.price}>{price}₽</p>

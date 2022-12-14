@@ -54,6 +54,11 @@
                 @include setFont(14px, normal, $font, 18px, 600, $black, 0.1em);
             }
 
+            .description {
+                margin-top: 10px;
+                @include setFont(12px, normal, #4d4d4d, 12px, 400, #4d4d4d, 0.1em);
+            }
+
             .category {
                 @include setFont(12px, normal, #4d4d4d, 12px, 600, $black, 0.1em);
             }
@@ -119,6 +124,11 @@
                     @include setFont(12px, normal, $font, 14px, 600, $black, 0.1em);
                     margin-right: 20px;
                 }
+
+                .description {
+                    margin-top: 10px;
+                    @include setFont(11px, normal, #4d4d4d, 12px, 400, #4d4d4d, 0.1em);
+                }
             }
         }
     }
@@ -138,6 +148,11 @@
             .image {
                 min-width: 30vw;
                 background-size: cover;
+            }
+
+            .description {
+                margin-top: 10px;
+                @include setFont(10px, normal, #4d4d4d, 12px, 400, #4d4d4d, 0.1em);
             }
         }
     }
@@ -186,6 +201,11 @@
 
                 .category {
                     @include setFont(10px, normal, #4d4d4d, 12px, 600, $black, 0.1em);
+                }
+
+                .description {
+                    margin-top: 8px;
+                    @include setFont(9px, normal, #4d4d4d, 11px, 400, #4d4d4d, 0.1em);
                 }
             }
         }
@@ -247,6 +267,11 @@
                 .category {
                     @include setFont(8px, normal, #4d4d4d, 10px, 600, $black, 0.1em);
                 }
+
+                .description {
+                    margin-top: 7px;
+                    @include setFont(8px, normal, #4d4d4d, 10px, 400, #4d4d4d, 0.1em);
+                }
             }
         }
     }
@@ -289,6 +314,11 @@
 
                 .category {
                     @include setFont(8px, normal, #4d4d4d, 10px, 600, $black, 0.1em);
+                }
+
+                .description {
+                    margin-top: 5px;
+                    @include setFont(7px, normal, #4d4d4d, 8px, 400, #4d4d4d, 0.1em);
                 }
             }
         }
