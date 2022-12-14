@@ -3,6 +3,7 @@ import styles from "@components/food/food.module.scss";
 import Button from "@components/ui/button/button.component";
 import { useAppDispatch } from "@redux/hooks/hooks";
 import { addDish } from "@redux/slices/cartSlice";
+import StarRating from "./StarRating";
 
 type CardInfoProps = {
   id: string;
@@ -32,6 +33,8 @@ const CardInfo: React.FC<CardInfoProps> = ({
       </div>
 
       <p style={{ display: "none" }}>{rating || 0}</p>
+
+      <StarRating currentRating={rating} />
 
       <div className={styles.priceContainer}>
         <p className={styles.price}>{price}₽</p>

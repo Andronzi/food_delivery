@@ -225,6 +225,7 @@
 
             .cardInfo {
                 margin-bottom: 35px;
+
                 .priceContainer {
                     .price {
                         @include setFont(8px, normal, $font, 10px, 600, $black, 0.1em);
@@ -249,7 +250,7 @@
     }
 }
 
-@media screen and (max-width: 490px) {
+@media screen and (max-width: 540px) {
     .container {
         margin: 0px 10px;
         display: grid;
@@ -267,6 +268,7 @@
 
             .cardInfo {
                 margin-bottom: 35px;
+
                 .priceContainer {
                     .price {
                         @include setFont(8px, normal, $font, 10px, 600, $black, 0.1em);
@@ -288,5 +290,5 @@
                 }
             }
         }
-    }   
+    }
 }

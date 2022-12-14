@@ -15,6 +15,10 @@
         align-items: center;
         column-gap: 20px;
 
+        .mobileMenu {
+            display: none;
+        }
+
         .menu {
             position: relative;
             display: block;
@@ -28,8 +32,8 @@
             display: none;
         }
 
-        .menu > span,
-        .menu > span::before {
+        .menu>span,
+        .menu>span::before {
             display: block;
             position: absolute;
             width: 100%;
@@ -38,7 +42,7 @@
             transition-duration: .25s;
         }
 
-        .menu > span::before {
+        .menu>span::before {
             content: '';
             top: -8px;
         }
@@ -75,14 +79,18 @@
             }
         }
 
+        .mobileList {
+            display: none;
+        }
+
         .ul {
             display: flex;
             list-style-type: none;
 
-            > li {
+            >li {
                 font-family: $font;
 
-                > a {
+                >a {
                     text-decoration: none;
                     font-size: 18px;
                     line-height: 22px;
@@ -141,7 +149,7 @@
                     cursor: pointer;
                     @include setFont(14px, normal, $font, 17px, 500, $black, 0.1em);
                 }
-                
+
                 .text:hover {
                     text-decoration: underline;
                 }
@@ -183,13 +191,17 @@
                 background-color: transparent;
             }
 
+            .mobileMenu {
+                display: block !important;
+            }
+
             .logo {
                 justify-self: center;
 
                 .logoImage {
                     width: 24px;
                 }
-            
+
                 .logoText {
                     font-size: 18px;
                     margin-left: 5px;
@@ -199,15 +211,76 @@
             .icons {
                 margin-left: 0px;
                 justify-self: end;
-        
+
                 .cart {
                     width: 24px;
                     margin: 0 15px;
                 }
             }
 
-            .ul, .location, .user {
+            .mobileList {
+                z-index: 2;
+                height: 100%;
+                width: 40%;
+                background-color: #fff;
+                position: absolute;
+                top: 53px;
+                left: 0px;
+                padding: 10px 20px;
                 display: none;
+
+                li {
+                    margin-top: 10px;
+                    @include setFont(12px, normal, $font, 14px, 500, $black, 0.1em);
+
+                    a {
+                        color: $black;
+                    }
+                }
+
+                .text {
+                    margin-top: 10px;
+                    @include setFont(12px, normal, $font, 14px, 500, $black, 0.1em);
+                }
+
+                .title {
+                    margin-top: 20px;
+                    @include setFont(14px, normal, $font, 16px, 600, $black, 0.1em);
+                }
+            }
+
+            .active {
+                display: block;
+            }
+
+            .ul,
+            .location,
+            .user {
+                display: none;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .wrapper {
+        .container {
+            .mobileList {
+                width: 60%;
+
+                li {
+                    margin-top: 10px;
+                    @include setFont(12px, normal, $font, 14px, 500, $black, 0.1em);
+
+                    a {
+                        color: $black;
+                    }
+                }
+
+                .text {
+                    margin-top: 10px;
+                    @include setFont(12px, normal, $font, 14px, 500, $black, 0.1em);
+                }
             }
         }
     }

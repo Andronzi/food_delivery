@@ -36,13 +36,8 @@ export const fetchDishes = createAsyncThunk(
     { rejectWithValue },
   ) => {
     try {
-      // @ts-ignore
-      console.log(searchParams);
       //@ts-ignore
       const params = await assignFilters(searchParams);
-      // console.log("ПАРАМЕТРЫ " + params.categories.map((element) => element.substring(1, element.length - 1)).join("");
-
-      console.log("ИТОГОВЫЕ" + params.vegetarian + params.page + params.categories);
 
       let URL = "";
 
@@ -55,13 +50,7 @@ export const fetchDishes = createAsyncThunk(
       } else {
         URL = `https://food-delivery.kreosoft.ru/api/dish?page=${params.page || 1}&vegetarian=${params.vegetarian}&sorting=${params.sorting}`;
       }
-
-      console.log(URL)
-
       const response = await axios.get(URL);
-
-      console.log(response.data);
-
       return response.data;
     } catch (err) {
       return rejectWithValue(err);

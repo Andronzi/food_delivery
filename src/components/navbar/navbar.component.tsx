@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <Hamburger />
+        <Hamburger name={name || false} />
 
         <Logo />
 
