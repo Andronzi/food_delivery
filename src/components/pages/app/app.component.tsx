@@ -9,6 +9,8 @@ import Cart from "../cart/cart.component";
 import Authorisation from "../registration/auth.component";
 import Registration from "../registration/registration.component";
 import NotFound from "../404/404.component";
+import Purchase from "../purchase/purchase.component";
+import Orders from "../orders/orders.component";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -39,6 +41,16 @@ const App = () => {
         <Route
           element={<Cart />}
           path="cart"
+        />
+
+        <Route
+          element={<Purchase />}
+          path="purchase"
+        />
+
+        <Route
+          element={<Orders />}
+          path="orders"
         />
 
         <Route

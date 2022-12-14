@@ -11,6 +11,11 @@
     cursor: pointer;
 }
 
+.medium_size {
+    height: 40px;
+    width: 200px;
+}
+
 .width_narrow {
     width: 60px;
 }
@@ -31,8 +36,20 @@
     background-color: $white;
 }
 
+.background_orange {
+    background-color: $orange;
+}
+
 .background_white {
     background-color: $white;
+}
+
+.medium_radius {
+    border-radius: 20px;
+}
+
+.medium_font {
+    font-size: 16px;
 }
 
 .color_default {

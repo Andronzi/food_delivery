@@ -1,3 +1,7 @@
+@import "src/scss/mixins";
+@import "src/scss/fonts";
+@import "src/scss/colors";
+
 .cartElement {
     margin-top: 20px;
 }
@@ -11,6 +15,21 @@
     border: 1px solid #E0E0E0;
     margin-top: 13.5px;
     border-radius: 1px;
+}
+
+.button {
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: none;
+    text-align: center;
+    @include setFont(16px, normal, $font, 20px, 600, $white, 0.1em);
+    height: 40px;
+    width: 200px;
+    border-radius: 15px;
+    background-color: $orange;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1200px) {

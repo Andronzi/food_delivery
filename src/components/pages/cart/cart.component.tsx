@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "@redux/hooks/hooks";
 import { getCartDishes } from "@redux/slices/cartSlice";
 import CartItem from "@components/cart/cartItem";
 import styles from "./cart.module.scss";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const dispatch = useAppDispatch();
@@ -30,6 +31,12 @@ const Cart = () => {
           <hr className={styles.hr} />
         </div>
       ))}
+
+      {cart.dishes.length > 0 && (
+        <Link to="/purchase">
+          <button className={styles.button}>Оформить</button>
+        </Link>
+      )}
     </div>
   );
 };

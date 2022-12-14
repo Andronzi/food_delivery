@@ -1,0 +1,258 @@
+@import "src/scss/fonts";
+@import "src/scss/mixins";
+@import "src/scss/colors";
+
+.select {
+    margin-top: 10px;
+    display: block;
+    height: 50px;
+    min-width: 412px;
+    background-color: #FFFAEB;
+    font-size: 16px;
+    border: none;
+    font-family: $font;
+    padding-left: 10px;
+    color: #7B7B7B;
+}
+
+.inputs {
+    display: flex;
+}
+
+.submit {
+    margin-top: 20px;
+    display: block;
+    height: 50px;
+    min-width: 412px;
+    color: #FFFFFF;
+    background-color: #FFC107;
+    border: none;
+    font-family: $font;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+input {
+    margin-top: 10px;
+    display: block;
+    height: 50px;
+    min-width: 412px;
+    background-color: #FFFAEB;
+    border: none;
+    font-family: $font;
+    padding-left: 10px;
+}
+
+.input::placeholder {
+    color: #7B7B7B;
+}
+
+.error {
+    color: #bf1650;
+    font-family: $font;
+    margin-top: 4px;
+}
+
+.error::before {
+    display: inline;
+    content: "⚠ ";
+}
+
+.container {
+    max-width: 1440px;
+    margin: 20px auto;
+
+    .header {
+        @include setFont(24px, normal, $font, 28px, 600, $black, 0.1em);
+    }
+
+    .title {
+        margin-top: 10px;
+        @include setFont(18px, normal, $font, 20px, 500, $black, 0.1em);
+    }
+
+    .title2 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        @include setFont(18px, normal, $font, 20px, 500, $black, 0.1em);
+    }
+
+    .dateInput {
+        margin-left: 20px;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    .container {
+        max-width: 1000px;
+        margin: 20px auto;
+
+        .header {
+            @include setFont(20px, normal, $font, 24px, 600, $black, 0.1em);
+        }
+
+        .title {
+            margin-top: 10px;
+            @include setFont(16px, normal, $font, 18px, 500, $black, 0.1em);
+        }
+
+        .title2 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            @include setFont(16px, normal, $font, 18px, 500, $black, 0.1em);
+        }
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    .container {
+        max-width: 740px;
+        margin: 20px auto;
+
+        .header {
+            @include setFont(18px, normal, $font, 22px, 600, $black, 0.1em);
+        }
+
+        .title {
+            margin-top: 10px;
+            @include setFont(14px, normal, $font, 16px, 500, $black, 0.1em);
+        }
+
+        .title2 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            @include setFont(14px, normal, $font, 16px, 500, $black, 0.1em);
+        }
+    }
+
+    input {
+        height: 40px;
+        min-width: 350px;
+    }
+
+    .submit {
+        height: 40px;
+        min-width: 350px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        max-width: 600px;
+        margin: 15px auto;
+
+        .header {
+            @include setFont(16px, normal, $font, 20px, 600, $black, 0.1em);
+        }
+
+        .title {
+            margin-top: 10px;
+            @include setFont(12px, normal, $font, 14px, 500, $black, 0.1em);
+        }
+
+        .title2 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            @include setFont(12px, normal, $font, 14px, 500, $black, 0.1em);
+        }
+    }
+
+    input {
+        height: 36px;
+        min-width: 300px;
+    }
+
+    .submit {
+        height: 36px;
+        min-width: 300px;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .container {
+        max-width: 450px;
+        margin: 15px auto;
+
+        .header {
+            @include setFont(16px, normal, $font, 20px, 600, $black, 0.1em);
+        }
+
+        .title {
+            margin-top: 10px;
+            @include setFont(12px, normal, $font, 14px, 500, $black, 0.1em);
+        }
+
+        .title2 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            @include setFont(12px, normal, $font, 14px, 500, $black, 0.1em);
+        }
+
+        .dateInput {
+            margin-left: 0px;
+        }
+    }
+
+    .inputs {
+        display: block;
+    }
+
+    input {
+        height: 36px;
+        min-width: 300px;
+    }
+
+    .submit {
+        height: 30px;
+        min-width: 240px;
+        @include setFont(12px, normal, $font, 14px, 500, $white, 0.1em);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        .header {
+            text-align: center;
+            @include setFont(18px, normal, $font, 24px, 600, $black, 0.1em);
+        }
+
+        .title {
+            text-align: center;
+            margin-top: 10px;
+            @include setFont(14px, normal, $font, 16px, 500, $black, 0.1em);
+            margin-bottom: 20px;
+        }
+
+        .title2 {
+            text-align: center;
+        }
+
+        .dateInput {
+            margin: 0 auto;
+            margin-top: 10px;
+        }
+    }
+
+    .inputs {
+        display: block;
+    }
+
+    input {
+        margin: 0 auto;
+        margin-top: 10px;
+        min-width: 300px;
+        max-width: 80%;
+        height: 40px;
+    }
+
+    .submit {
+        min-width: 300px;
+        max-width: 80%;
+        height: 40px;
+        font-size: 13.33px;
+    }
+
+    .hr {
+        margin: 20px 20px;
+    }
+}

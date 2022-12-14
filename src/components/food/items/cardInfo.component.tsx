@@ -8,6 +8,7 @@ import StarRating from "./StarRating";
 type CardInfoProps = {
   id: string;
   name: string;
+  description: string;
   category: string;
   rating: number;
   price: number;
@@ -16,6 +17,7 @@ type CardInfoProps = {
 const CardInfo: React.FC<CardInfoProps> = ({
   id,
   name,
+  description,
   category,
   rating,
   price,
@@ -35,6 +37,8 @@ const CardInfo: React.FC<CardInfoProps> = ({
       <p style={{ display: "none" }}>{rating || 0}</p>
 
       <StarRating currentRating={rating} />
+
+      <p>{description}</p>
 
       <div className={styles.priceContainer}>
         <p className={styles.price}>{price}₽</p>

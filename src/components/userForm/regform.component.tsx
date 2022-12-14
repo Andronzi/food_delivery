@@ -93,6 +93,7 @@ const RegForm = () => {
       />
 
       <input
+        type="password"
         placeholder="Пароль"
         {...register("password", {
           required: "Данное поле является обязательным",

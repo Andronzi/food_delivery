@@ -6,6 +6,7 @@ type DishCardProps = {
   id: string;
   src: string;
   name: string;
+  description: string;
   rating: number;
   price: number;
   category: string;
@@ -15,24 +16,37 @@ const DishCard: React.FC<DishCardProps> = ({
   id,
   src,
   name,
+  description,
   rating,
   price,
   category,
-}) => (
-  <div className={styles.dish}>
+}) => {
+  const changeText = (description: string) => {
+    if (description.length > 40) {
+      return description.substring(1, 40) + "...";
+    } else {
+      return description + "...";
+    }
+  };
+  return (
     <div
-      className={styles.image}
-      style={{ backgroundImage: `url(${src})` }}
-    />
+      className={styles.dish}
+      onClick={() => console.log(id)}>
+      <div
+        className={styles.image}
+        style={{ backgroundImage: `url(${src})` }}
+      />
 
-    <CardInfo
-      category={category}
-      id={id}
-      name={name}
-      price={price}
-      rating={rating}
-    />
-  </div>
-);
+      <CardInfo
+        category={category}
+        id={id}
+        description={changeText(description)}
+        name={name}
+        price={price}
+        rating={rating}
+      />
+    </div>
+  );
+};
 
 export default DishCard;

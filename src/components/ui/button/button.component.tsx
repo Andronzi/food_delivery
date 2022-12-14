@@ -7,6 +7,8 @@ interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   background?: string;
   color?: string;
   backgroundColor?: string;
+  borderRadius?: string;
+  fontSize?: string;
   handleClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -17,7 +19,9 @@ const Button: React.FC<IButtonProps> = ({
   // size,
   backgroundColor,
   color,
-  // size,
+  borderRadius,
+  fontSize,
+  size,
 }) => {
   return (
     <button
@@ -26,10 +30,15 @@ const Button: React.FC<IButtonProps> = ({
       } ${backgroundColor === "red" && styles.background_red} ${
         backgroundColor === "black" && styles.background_black
       }
+      ${size === "medium" && styles.medium_size}
       ${backgroundColor === "white" && styles.background_white}
+      ${backgroundColor === "orange" && styles.background_orange}
       ${color === "white" && styles.color_white} ${
         color === "black" && styles.color_black
-      }`}
+      }
+      ${borderRadius === "medium" && styles.medium_radius}
+      ${fontSize === "medium" && styles.medium_font}
+      `}
       onClick={handleClick}
       type="button">
       {value}

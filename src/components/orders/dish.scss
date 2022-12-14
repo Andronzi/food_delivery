@@ -1,0 +1,120 @@
+@import "src/scss/fonts";
+@import "src/scss/colors";
+@import "src/scss/mixins";
+
+.dish {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .image {
+        min-width: 189px;
+        min-height: 125px;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        border-radius: 30px;
+        // padding-bottom: 62.5%;
+    }
+
+    .info {
+        margin-left: 10px;
+
+        .title {
+            @include setFont(16px, normal, $font, 20px, 600, $black, 0.05em);
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            @include setFont(12px, normal, $font, 16px, 500, $black, 0.05em);
+        }
+    }
+
+    .cost {
+        position: absolute;
+        right: 0px;
+        @include setFont(16px, normal, $font, 20px, 600, $black, 0.05em);
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .dish {
+        .image {
+            min-width: 170px;
+            min-height: 110px;
+        }
+
+        .info {
+            .title {
+                @include setFont(15px, normal, $font, 18px, 600, $black, 0.05em);
+                margin-bottom: 16px;
+            }
+
+            .subtitle {
+                @include setFont(11px, normal, $font, 14px, 500, $black, 0.05em);
+            }
+        }
+
+        .cost {
+            @include setFont(15px, normal, $font, 18px, 600, $black, 0.05em);
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .dish {
+        .image {
+            min-width: 140px;
+            min-height: 93px;
+        }
+
+        .info {
+            .title {
+                @include setFont(12px, normal, $font, 15px, 600, $black, 0.05em);
+                margin-bottom: 16px;
+            }
+
+            .subtitle {
+                @include setFont(10px, normal, $font, 12px, 500, $black, 0.05em);
+            }
+        }
+
+        .cost {
+            @include setFont(12px, normal, $font, 15px, 600, $black, 0.05em);
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .dish {
+        display: block;
+        margin: 0 auto;
+
+        .image {
+            display: block;
+            max-width: 189px;
+            max-height: 125px;
+            margin: 0 auto;
+        }
+
+        .info {
+            .title {
+                text-align: center;
+                @include setFont(12px, normal, $font, 15px, 600, $black, 0em);
+                margin-top: 10px;
+                margin-bottom: 16px;
+            }
+
+            .subtitle {
+                text-align: center;
+                @include setFont(10px, normal, $font, 12px, 500, $black, 0.05em);
+            }
+        }
+
+        .cost {
+            text-align: center;
+            position: static;
+            @include setFont(10px, normal, $font, 13px, 600, $black, 0em);
+        }
+    }
+}

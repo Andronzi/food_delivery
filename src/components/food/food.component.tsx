@@ -39,6 +39,7 @@ const Food: React.FC = () => {
           <DishCard
             key={dish.id}
             category={dish.category}
+            description={dish.description}
             id={dish.id}
             name={dish.name}
             price={dish.price}
