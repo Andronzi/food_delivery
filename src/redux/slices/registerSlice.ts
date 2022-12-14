@@ -60,6 +60,7 @@ export const logout = createAsyncThunk(
     try {
       const response = await axios.post(
         `https://food-delivery.kreosoft.ru/api/account/logout`,
+        {},
         {
           headers: {
             Authorization: `Bearer ${token}`,

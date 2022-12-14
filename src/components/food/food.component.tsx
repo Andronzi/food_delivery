@@ -10,7 +10,7 @@ import { usePages } from "./hooks/usePages";
 import { useCustomNavigation } from "./hooks/useCustomNavigation";
 import Filters from "./filters/filters.component";
 import { useAppDispatch } from "@redux/hooks/hooks";
-import { fetchDishes } from "@redux/slices/dishSlice";
+import { fetchDishesWithSearchParams } from "@redux/slices/dishSlice";
 
 const Food: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -24,7 +24,7 @@ const Food: React.FC = () => {
     // @ts-ignore
     console.log([...searchParams]);
     // @ts-ignore
-    dispatch(fetchDishes([...searchParams]));
+    dispatch(fetchDishesWithSearchParams([...searchParams]));
   }, [searchParams, setSearchParams]);
 
   if (!data.dishes) {
@@ -66,10 +66,10 @@ const Food: React.FC = () => {
             <li key={pageNumber}>
               <Button
                 backgroundColor={`${
-                  pageNumber == data.pagination.current ? "black" : "white"
+                  pageNumber == data.pagination?.current ? "black" : "white"
                 }`}
                 color={`${
-                  pageNumber == data.pagination.current ? "white" : "black"
+                  pageNumber == data.pagination?.current ? "white" : "black"
                 }`}
                 handleClick={event =>
                   // @ts-ignore

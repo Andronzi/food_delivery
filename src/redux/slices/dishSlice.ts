@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { assignFilters } from "@components/food/helpers/filter";
 
@@ -23,14 +22,15 @@ export interface Pagination {
 export type IDishDto = { dishes: Array<Dish>; pagination: Pagination };
 type StateParams = {
   status: string;
+  currentDish: Dish;
 };
 
 type State = IDishDto & StateParams;
 
 const initialState = {} as State;
 
-export const fetchDishes = createAsyncThunk(
-  "dishes/fetchDishesByPage",
+export const fetchDishesWithSearchParams = createAsyncThunk(
+  "dishes/fetchDishesByParams",
   async (
     searchParams: any,
     { rejectWithValue },
@@ -42,15 +42,29 @@ export const fetchDishes = createAsyncThunk(
       let URL = "";
 
       if (!params.categories && !params.sorting) {
-        URL = `https://food-delivery.kreosoft.ru/api/dish?page=${params.page || 1}&vegetarian=${params.vegetarian}`;
+        URL = `https://food-delivery.kreosoft.ru/api/dish?page=${params.page || 1}&vegetarian=${params.vegetarian || false}`;
       } else if (params.categories && params.sorting) {
-        URL = `https://food-delivery.kreosoft.ru/api/dish?page=${params.page || 1}&vegetarian=${params.vegetarian}&categories=${params.categories.join('&categories=')}&sorting=${params.sorting}`;
+        URL = `https://food-delivery.kreosoft.ru/api/dish?page=${params.page || 1}&vegetarian=${params.vegetarian || false}&categories=${params.categories.join('&categories=')}&sorting=${params.sorting}`;
       } else if (params.categories && !params.sorting) {
-        URL = `https://food-delivery.kreosoft.ru/api/dish?page=${params.page || 1}&vegetarian=${params.vegetarian}&categories=${params.categories.join('&categories=')}`;
+        URL = `https://food-delivery.kreosoft.ru/api/dish?page=${params.page || 1}&vegetarian=${params.vegetarian || false}&categories=${params.categories.join('&categories=')}`;
       } else {
-        URL = `https://food-delivery.kreosoft.ru/api/dish?page=${params.page || 1}&vegetarian=${params.vegetarian}&sorting=${params.sorting}`;
+        URL = `https://food-delivery.kreosoft.ru/api/dish?page=${params.page || 1}&vegetarian=${params.vegetarian || false}&sorting=${params.sorting}`;
       }
       const response = await axios.get(URL);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  },
+);
+
+export const fetchDish = createAsyncThunk(
+  "dishes/fetchDishById",
+  async (
+    id: string, {rejectWithValue}
+  ) => {
+    try {
+      const response = await axios.get(`https://food-delivery.kreosoft.ru/api/dish/${id}`);
       return response.data;
     } catch (err) {
       return rejectWithValue(err);
@@ -63,14 +77,25 @@ const dishSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(
-      fetchDishes.fulfilled,
-      (state: State, action: PayloadAction<State>) => {
+    builder
+      .addCase(fetchDishesWithSearchParams.fulfilled, (state: State, action) => {
         state.status = "fulfilled";
-        state.dishes = action.payload.dishes;
-        state.pagination = action.payload.pagination;
-      },
-    );
+          state.dishes = action.payload.dishes;
+          state.pagination = action.payload.pagination;
+      })
+      .addCase(fetchDishesWithSearchParams.rejected, (state: State, action: any) => {
+          state.status = "rejected";
+          state.pagination = action.payload.pagination;
+      })
+      .addCase(fetchDish.fulfilled, (state: State, action) => {
+        state.status = "fulfilled";
+          state.currentDish = action.payload;
+          state.pagination = action.payload.pagination;
+      })
+      .addCase(fetchDish.rejected, (state: State, action: any) => {
+          state.status = "rejected";
+          state.pagination = action.payload.pagination;
+      })
   },
 });
 

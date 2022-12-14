@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "@components/food/food.module.scss";
 import CardInfo from "./cardInfo.component";
+import { useNavigate } from "react-router";
 
 type DishCardProps = {
   id: string;
@@ -21,6 +22,7 @@ const DishCard: React.FC<DishCardProps> = ({
   price,
   category,
 }) => {
+  const navigate = useNavigate();
   const changeText = (description: string) => {
     if (description.length > 40) {
       return description.substring(1, 40) + "...";
@@ -31,7 +33,7 @@ const DishCard: React.FC<DishCardProps> = ({
   return (
     <div
       className={styles.dish}
-      onClick={() => console.log(id)}>
+      onClick={() => navigate(`/item/${id}`)}>
       <div
         className={styles.image}
         style={{ backgroundImage: `url(${src})` }}

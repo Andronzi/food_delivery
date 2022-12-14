@@ -1,4 +1,4 @@
-import OrderDish from "@components/orders/Dish";
+import OrderDish from "@components/orders/items/Dish";
 import { useAppDispatch, useAppSelector } from "@redux/hooks/hooks";
 import { getCartDishes } from "@redux/slices/cartSlice";
 import { addOrder } from "@redux/slices/orderSlice";

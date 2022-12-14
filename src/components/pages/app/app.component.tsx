@@ -11,6 +11,9 @@ import Registration from "../registration/registration.component";
 import NotFound from "../404/404.component";
 import Purchase from "../purchase/purchase.component";
 import Orders from "../orders/orders.component";
+import OrderDetails from "../orderDetails/OrderDetails";
+import ProfileForm from "@components/profile/profile";
+import DishComponent from "../dish/dish.component";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +24,8 @@ const App = () => {
   return (
     <div className="app">
       <Navbar />
+
+      <ProfileForm />
 
       <Routes>
         <Route
@@ -51,6 +56,16 @@ const App = () => {
         <Route
           element={<Orders />}
           path="orders"
+        />
+
+        <Route
+          element={<OrderDetails />}
+          path="/order/:id"
+        />
+
+        <Route
+          element={<DishComponent />}
+          path="/item/:id"
         />
 
         <Route

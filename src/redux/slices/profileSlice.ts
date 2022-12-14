@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export interface User {
@@ -13,6 +13,7 @@ export interface User {
 
 type ProfileState = {
   user: User;
+  isOpen: boolean;
   loading: string;
   currentRequestId: undefined | string;
   error: null | unknown;
@@ -39,10 +40,37 @@ export const getProfile = createAsyncThunk(
   },
 );
 
+export const editProfile = createAsyncThunk(
+  "editProfile",
+  async (params: {token: string, data: User}, { rejectWithValue }) => {
+    try {
+      const response = await axios.put(
+        `https://food-delivery.kreosoft.ru/api/account/profile`,
+        {
+          fullName: params.data.fullName,
+          address: params.data.address,
+          birthDate: params.data.birthDate,
+          gender: params.data.gender,
+          phoneNumber: params.data.phoneNumber
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${params.token}`,
+          },
+        },
+      );
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  },
+);
+
 const profileSlice = createSlice({
   name: "profile",
   initialState: {
     user: {} as User,
+    isOpen: false,
     loading: "idle",
     currentRequestId: undefined,
     error: null,
@@ -50,6 +78,10 @@ const profileSlice = createSlice({
     isRedirected: false,
   } as ProfileState,
   reducers: {
+    toggleOpenOfUserEditForm: (state, action: PayloadAction<boolean>) => {
+      state.isOpen = action.payload;
+    },
+
     deleteUser: state => {
       state.user = {} as User;
     },
@@ -88,9 +120,41 @@ const profileSlice = createSlice({
           state.currentRequestId = undefined;
           state.errorMessage = action.payload.message;
         }
+      })
+      .addCase(editProfile.pending, (state: ProfileState, action) => {
+        if (state.loading === "idle") {
+          state.loading = "pending";
+          state.currentRequestId = action.meta.requestId;
+          state.error = null;
+          state.errorMessage = null;
+        }
+      })
+      .addCase(editProfile.fulfilled, (state: ProfileState, action) => {
+        const { requestId } = action.meta;
+        if (
+          state.loading === "pending" &&
+          state.currentRequestId === requestId
+        ) {
+          state.loading = "idle";
+          state.error = null;
+          state.currentRequestId = undefined;
+          state.errorMessage = null;
+        }
+      })
+      .addCase(editProfile.rejected, (state: ProfileState, action: any) => {
+        const { requestId } = action.meta;
+        if (
+          state.loading === "pending" &&
+          state.currentRequestId === requestId
+        ) {
+          state.loading = "idle";
+          state.error = action.error.message;
+          state.currentRequestId = undefined;
+          state.errorMessage = action.payload.message;
+        }
       });
   },
 });
 
-export const { deleteUser } = profileSlice.actions;
+export const { toggleOpenOfUserEditForm ,deleteUser } = profileSlice.actions;
 export default profileSlice.reducer;

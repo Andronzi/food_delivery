@@ -5,7 +5,11 @@ import styles from "@components/navbar/navbar.module.scss";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "@redux/hooks/hooks";
 import { logout } from "@redux/slices/registerSlice";
-import { deleteUser } from "@redux/slices/profileSlice";
+import {
+  deleteUser,
+  toggleOpenOfUserEditForm,
+} from "@redux/slices/profileSlice";
+import { toast } from "react-hot-toast";
 
 interface Props {
   name: string | boolean;
@@ -19,8 +23,29 @@ const Icons = ({ name }: Props): JSX.Element => {
     setVisibility(prevState => !prevState);
   };
 
+  const handleProfileDataClick = () => {
+    dispatch(toggleOpenOfUserEditForm(true));
+  };
+
   const handleLogoutLinkClick = async () => {
-    await dispatch(logout(localStorage.getItem("token")!));
+    const logoutResponse = await dispatch(
+      logout(localStorage.getItem("token")!),
+    );
+
+    console.log(logoutResponse);
+
+    if (logoutResponse.type === "logoutUser/rejected") {
+      toast.error("Возникла ошибка", {
+        duration: 1000,
+        style: { fontFamily: "Montserrat" },
+      });
+    } else {
+      toast.success("Вы успешно вышли", {
+        duration: 1000,
+        style: { fontFamily: "Montserrat" },
+      });
+    }
+
     dispatch(deleteUser());
   };
 
@@ -57,7 +82,11 @@ const Icons = ({ name }: Props): JSX.Element => {
           </>
         ) : (
           <>
-            <p className={styles.text}>Мои данные</p>
+            <p
+              onClick={handleProfileDataClick}
+              className={styles.text}>
+              Мои данные
+            </p>
 
             <Link
               onClick={handleLinkClick}

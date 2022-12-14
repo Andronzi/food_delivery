@@ -1,0 +1,110 @@
+@import "src/scss/fonts";
+@import "src/scss/mixins";
+@import "src/scss/colors";
+
+.orderCard {
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.05);
+    margin: 20px 0px;
+    padding: 20px;
+}
+
+.title {
+    margin-bottom: 10px;
+    @include setFont(18px, normal, $font, 20px, 600, $black, 0.1em);
+}
+
+.subtitle {
+    margin-top: 5px;
+    @include setFont(14px, normal, $font, 18px, 500, $black, 0.1em);
+}
+
+.price {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    @include setFont(14px, normal, $font, 18px, 500, $black, 0.1em)
+}
+
+.priceValue {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+@media screen and (max-width: 768px) {
+    .title {
+        @include setFont(14px, normal, $font, 17px, 600, $black, 0.1em);
+    }
+
+    .subtitle {
+        margin-top: 5px;
+        @include setFont(12px, normal, $font, 14px, 500, $black, 0.1em);
+    }
+
+    .price {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 20px;
+        @include setFont(12px, normal, $font, 14px, 500, $black, 0.1em)
+    }
+
+    .priceValue {
+        @include setFont(14px, normal, $font, 17px, 600, $black, 0.1em)
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .title {
+        @include setFont(12px, normal, $font, 15px, 600, $black, 0.1em);
+    }
+
+    .subtitle {
+        margin-top: 5px;
+        @include setFont(10px, normal, $font, 12px, 500, $black, 0.1em);
+    }
+
+    .price {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 20px;
+        @include setFont(10px, normal, $font, 12px, 500, $black, 0.1em)
+    }
+
+    .priceValue {
+        @include setFont(12px, normal, $font, 15px, 600, $black, 0.1em)
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .orderCard {
+        position: relative;
+        margin: 20px 20px;
+    }
+
+    .title {
+        text-align: center;
+        @include setFont(14px, normal, $font, 16px, 600, $black, 0.1em);
+    }
+
+    .subtitle {
+        text-align: center;
+        margin-top: 5px;
+        @include setFont(12px, normal, $font, 14px, 500, $black, 0.1em);
+    }
+
+    .price {
+        text-align: center;
+        margin-top: 20px;
+        position: static;
+        @include setFont(12px, normal, $font, 14px, 500, $black, 0.1em)
+    }
+
+    .priceValue {
+        text-align: center;
+        @include setFont(14px, normal, $font, 16px, 600, $black, 0.1em);
+    }
+}

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./form.module.scss";
 import useAuthRequest from "./hooks/useAuthRequest";
 import useAuthResHandler from "./hooks/useAuthResHandler";
+import { Toaster } from "react-hot-toast";
 
 const AuthForm = () => {
   const {
@@ -43,65 +44,68 @@ const AuthForm = () => {
   };
 
   return (
-    <form
-      className={styles.form}
-      onSubmit={handleSubmit(onSubmit)}>
-      <input
-        placeholder="Email"
-        {...register("email", {
-          required: "Данное поле является обязательным",
-          pattern: {
-            value: /[a-z0-9]+@[a-z]+.[a-z]{2,3}/i,
-            message: "Email неверный",
-          },
-        })}
-      />
+    <>
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit(onSubmit)}>
+        <input
+          placeholder="Email"
+          {...register("email", {
+            required: "Данное поле является обязательным",
+            pattern: {
+              value: /[a-z0-9]+@[a-z]+.[a-z]{2,3}/i,
+              message: "Email неверный",
+            },
+          })}
+        />
 
-      <ErrorMessage
-        errors={errors}
-        name="email"
-        render={({ messages }) =>
-          messages
-            ? Object.entries(messages).map(([type, message]) => (
-                <p
-                  key={type}
-                  className={styles.error}>
-                  {message}
-                </p>
-              ))
-            : null
-        }
-      />
+        <ErrorMessage
+          errors={errors}
+          name="email"
+          render={({ messages }) =>
+            messages
+              ? Object.entries(messages).map(([type, message]) => (
+                  <p
+                    key={type}
+                    className={styles.error}>
+                    {message}
+                  </p>
+                ))
+              : null
+          }
+        />
 
-      <input
-        type="password"
-        placeholder="Пароль"
-        {...register("password", {
-          required: "Данное поле является обязательным",
-        })}
-      />
+        <input
+          type="password"
+          placeholder="Пароль"
+          {...register("password", {
+            required: "Данное поле является обязательным",
+          })}
+        />
 
-      <ErrorMessage
-        errors={errors}
-        name="password"
-        render={({ messages }) =>
-          messages
-            ? Object.entries(messages).map(([type, message]) => (
-                <p
-                  key={type}
-                  className={styles.error}>
-                  {message}
-                </p>
-              ))
-            : null
-        }
-      />
+        <ErrorMessage
+          errors={errors}
+          name="password"
+          render={({ messages }) =>
+            messages
+              ? Object.entries(messages).map(([type, message]) => (
+                  <p
+                    key={type}
+                    className={styles.error}>
+                    {message}
+                  </p>
+                ))
+              : null
+          }
+        />
 
-      <input
-        className={styles.submit}
-        type="submit"
-      />
-    </form>
+        <input
+          className={styles.submit}
+          type="submit"
+        />
+      </form>
+      <Toaster />
+    </>
   );
 };
 

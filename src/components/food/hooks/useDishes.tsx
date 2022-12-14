@@ -1,5 +1,5 @@
 import { useAppDispatch } from "@redux/hooks/hooks";
-import { fetchDishes } from "@redux/slices/dishSlice";
+import { fetchDishesWithSearchParams } from "@redux/slices/dishSlice";
 import React from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -14,6 +14,6 @@ export const useDishes = () => {
     // @ts-ignore
     console.log([...searchParams]);
     // @ts-ignore
-    dispatch(fetchDishes([...searchParams]));
+    dispatch(fetchDishesWithSearchParams([...searchParams]));
   }, [searchParams, setSearchParams]);
 };

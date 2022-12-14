@@ -2,7 +2,10 @@ import React from "react";
 import styles from "@components/navbar/navbar.module.scss";
 import { useAppDispatch } from "@redux/hooks/hooks";
 import { logout } from "@redux/slices/registerSlice";
-import { deleteUser } from "@redux/slices/profileSlice";
+import {
+  deleteUser,
+  toggleOpenOfUserEditForm,
+} from "@redux/slices/profileSlice";
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -16,6 +19,11 @@ const Hamburger = ({ name }: Props): JSX.Element => {
     setActive(false);
     await dispatch(logout(localStorage.getItem("token")!));
     dispatch(deleteUser());
+  };
+
+  const handleProfileDataClick = () => {
+    setActive(false);
+    dispatch(toggleOpenOfUserEditForm(true));
   };
 
   const handleMenuClick = () => {
@@ -64,7 +72,7 @@ const Hamburger = ({ name }: Props): JSX.Element => {
           <>
             <p
               className={styles.text}
-              onClick={handleLinkClick}>
+              onClick={handleProfileDataClick}>
               Мои данные
             </p>
 
