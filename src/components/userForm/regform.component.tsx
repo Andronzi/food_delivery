@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import styles from "./form.module.scss";
 import useAuthRequest from "./hooks/useAuthRequest";
 import useAuthResHandler from "./hooks/useAuthResHandler";
+import "react-phone-number-input/style.css";
+// import PhoneInput from "react-phone-number-input";
 
 const RegForm = () => {
   const {

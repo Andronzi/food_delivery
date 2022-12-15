@@ -11,6 +11,8 @@ import styles from "./form.module.scss";
 import close from "@icons/delete.svg";
 import { getDateAsISO } from "@components/helpers/time";
 import { toast, Toaster } from "react-hot-toast";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
 type InputProps = {
   value: string;
@@ -18,8 +20,7 @@ type InputProps = {
   type: React.HTMLInputTypeAttribute;
   register: UseFormRegister<User>;
   required: boolean;
-  patternValue?: RegExp | undefined;
-  patternMessage?: string | undefined;
+  mask?: boolean;
 };
 
 const Input = ({
@@ -28,8 +29,7 @@ const Input = ({
   type,
   register,
   required,
-  patternValue,
-  patternMessage,
+  mask,
 }: InputProps) => {
   const [state, setState] = React.useState(value);
 
@@ -39,19 +39,16 @@ const Input = ({
 
   return (
     <>
-      {patternValue ? (
-        <input
-          className={styles.input}
+      {mask ? (
+        <PhoneInput
+          className={styles.PhoneInput}
           type={type}
           value={state}
           {...register(label, {
             required: required,
-            pattern: {
-              value: patternValue,
-              message: patternMessage || "",
-            },
           })}
-          onChange={changeInput}
+          //@ts-ignore
+          onChange={setState}
         />
       ) : (
         <input
@@ -183,6 +180,7 @@ const ProfileForm = () => {
             type="tel"
             register={register}
             required={true}
+            mask={true}
           />
 
           <input

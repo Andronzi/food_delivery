@@ -138,3 +138,8 @@ table {
 a {
     text-decoration: none;
 }
+
+.PhoneInputCountryIcon {
+    width: 40px !important;
+    height: 40px !important;
+}
