@@ -2,6 +2,7 @@ import OrderInfo from "@components/orders/OrderInfo";
 import { useAppDispatch, useAppSelector } from "@redux/hooks/hooks";
 import { getCartDishes } from "@redux/slices/cartSlice";
 import { getOrders } from "@redux/slices/orderSlice";
+import DishLoader from "@src/loaders/DishLoaders";
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./purchase.module.scss";
@@ -15,6 +16,10 @@ const Orders = () => {
 
   const order = useAppSelector(state => state.order);
   const cart = useAppSelector(state => state.cart);
+
+  if (order.loading === "pending") {
+    return <DishLoader />;
+  }
 
   return (
     <div className={styles.container}>
@@ -38,10 +43,6 @@ const Orders = () => {
           status={order.status}
         />
       ))}
-      {/* <Toaster
-        position="top-center"
-        reverseOrder={false}
-      /> */}
     </div>
   );
 };

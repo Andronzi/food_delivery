@@ -28,7 +28,6 @@ const CartItem: React.FC<ItemProps> = ({
       />
       <div className={styles.info}>
         <p>{name}</p>
-        <span>WOK</span>
         <p className={styles.price}>{price}₽</p>
       </div>
       <img

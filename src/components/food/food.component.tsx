@@ -11,6 +11,7 @@ import { useCustomNavigation } from "./hooks/useCustomNavigation";
 import Filters from "./filters/filters.component";
 import { useAppDispatch } from "@redux/hooks/hooks";
 import { fetchDishesWithSearchParams } from "@redux/slices/dishSlice";
+import DishLoader from "@src/loaders/DishLoaders";
 
 const Food: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -28,7 +29,7 @@ const Food: React.FC = () => {
   }, [searchParams, setSearchParams]);
 
   if (!data.dishes) {
-    return <div>No dishes</div>;
+    return <DishLoader />;
   }
 
   return (
@@ -44,6 +45,7 @@ const Food: React.FC = () => {
             name={dish.name}
             price={dish.price}
             rating={dish.rating}
+            vegetarian={dish.vegetarian}
             src={dish.image}
           />
         ))}

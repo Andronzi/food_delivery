@@ -221,7 +221,7 @@
             .mobileList {
                 z-index: 2;
                 height: 100%;
-                width: 40%;
+                width: 0%;
                 background-color: #fff;
                 position: absolute;
                 top: 53px;
@@ -250,7 +250,31 @@
             }
 
             .active {
+                animation-name: active1;
+                animation-duration: .4s;
                 display: block;
+                animation-fill-mode: forwards;
+            }
+
+            @keyframes active1 {
+                from {
+                    width: 0%;
+                }
+
+                to {
+                    width: 40%;
+                }
+            }
+
+            @keyframes unactive {
+                from {
+                    width: 40%;
+                }
+
+                to {
+                    width: 0%;
+                    display: none;
+                }
             }
 
             .ul,
@@ -280,6 +304,23 @@
                 .text {
                     margin-top: 10px;
                     @include setFont(12px, normal, $font, 14px, 500, $black, 0.1em);
+                }
+            }
+
+            .active {
+                animation-name: active2;
+                animation-duration: .4s;
+                display: block;
+                animation-fill-mode: forwards;
+            }
+
+            @keyframes active2 {
+                from {
+                    width: 0%;
+                }
+
+                to {
+                    width: 60%;
                 }
             }
         }

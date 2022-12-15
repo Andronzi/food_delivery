@@ -1,6 +1,7 @@
 import StarRating from "@components/food/items/StarRating";
 import { useAppDispatch, useAppSelector } from "@redux/hooks/hooks";
 import { fetchDish } from "@redux/slices/dishSlice";
+import DishLoader from "@src/loaders/DishLoaders";
 import React from "react";
 import { useParams } from "react-router";
 import styles from "./dish.scss";
@@ -13,6 +14,10 @@ const DishComponent = () => {
   React.useEffect(() => {
     dispatch(fetchDish(id || ""));
   }, [id, dispatch]);
+
+  if (!currentDish?.category) {
+    return <DishLoader />;
+  }
 
   return (
     <div>

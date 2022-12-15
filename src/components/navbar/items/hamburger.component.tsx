@@ -43,7 +43,10 @@ const Hamburger = ({ name }: Props): JSX.Element => {
         <span />
       </button>
 
-      <ul className={`${styles.mobileList} ${active && styles.active}`}>
+      <ul
+        className={`${styles.mobileList} ${
+          active ? styles.active : styles.unactive
+        }`}>
         <li onClick={handleLinkClick}>
           <Link to="/">Меню</Link>
         </li>

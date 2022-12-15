@@ -2,6 +2,7 @@ import React from "react";
 import styles from "@components/food/food.module.scss";
 import CardInfo from "./cardInfo.component";
 import { useNavigate } from "react-router";
+import brokkoli from "@icons/broccoli.png";
 
 type DishCardProps = {
   id: string;
@@ -11,6 +12,7 @@ type DishCardProps = {
   rating: number;
   price: number;
   category: string;
+  vegetarian: boolean;
 };
 
 const DishCard: React.FC<DishCardProps> = ({
@@ -21,6 +23,7 @@ const DishCard: React.FC<DishCardProps> = ({
   rating,
   price,
   category,
+  vegetarian,
 }) => {
   const navigate = useNavigate();
   const changeText = (description: string) => {
@@ -32,6 +35,13 @@ const DishCard: React.FC<DishCardProps> = ({
   };
   return (
     <div className={styles.dish}>
+      {vegetarian ? (
+        <img
+          style={{ position: "absolute", right: 5 + "px", top: 5 + "px" }}
+          src={brokkoli}
+          alt="Веган"
+        />
+      ) : null}
       <div
         onClick={() => navigate(`/item/${id}`)}
         className={styles.image}

@@ -2,6 +2,7 @@ import { getDateTime } from "@components/helpers/time";
 import OrderDish from "@components/orders/items/Dish";
 import { useAppDispatch, useAppSelector } from "@redux/hooks/hooks";
 import { confirmOrder, getOrder } from "@redux/slices/orderSlice";
+import DishLoader from "@src/loaders/DishLoaders";
 import React from "react";
 import { toast, Toaster } from "react-hot-toast";
 import { useParams } from "react-router";
@@ -41,6 +42,10 @@ const OrderDetails = () => {
       );
     }
   };
+
+  if (!order?.status) {
+    return <DishLoader />;
+  }
 
   return (
     <div className={styles.container}>

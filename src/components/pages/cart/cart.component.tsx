@@ -4,6 +4,7 @@ import { getCartDishes } from "@redux/slices/cartSlice";
 import CartItem from "@components/cart/cartItem";
 import styles from "./cart.module.scss";
 import { Link } from "react-router-dom";
+import DishLoader from "@src/loaders/DishLoaders";
 
 const Cart = () => {
   const dispatch = useAppDispatch();
@@ -12,8 +13,8 @@ const Cart = () => {
   }, [dispatch]);
   const cart = useAppSelector(state => state.cart);
 
-  if (!cart.dishes) {
-    return <div>No dishes</div>;
+  if (cart.loading === "pending") {
+    return <DishLoader />;
   }
 
   return (

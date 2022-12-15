@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "@components/food/food.module.scss";
 import Button from "@components/ui/button/button.component";
-import { useAppDispatch } from "@redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "@redux/hooks/hooks";
 import { addDish } from "@redux/slices/cartSlice";
 import StarRating from "./StarRating";
 import { toast } from "react-hot-toast";
+import Buttons from "@components/cart/buttons";
 
 type CardInfoProps = {
   id: string;
@@ -24,6 +25,9 @@ const CardInfo: React.FC<CardInfoProps> = ({
   price,
 }) => {
   const dispatch = useAppDispatch();
+  const cartDish = useAppSelector(state =>
+    state.cart.dishes.filter(item => item.id === id),
+  );
   const addToBasket = async () => {
     const basketResponse = await dispatch(
       addDish({ token: localStorage.getItem("token")!, dishId: id }),
@@ -61,12 +65,26 @@ const CardInfo: React.FC<CardInfoProps> = ({
       <div className={styles.priceContainer}>
         <p className={styles.price}>{price}₽</p>
 
-        <Button
+        {/* <Button
           backgroundColor="red"
           color="white"
           handleClick={addToBasket}
           value="В корзину"
-        />
+        /> */}
+
+        {cartDish[0]?.id ? (
+          <Buttons
+            amount={cartDish[0].amount}
+            dishId={id}
+          />
+        ) : (
+          <Button
+            backgroundColor="red"
+            color="white"
+            handleClick={addToBasket}
+            value="В корзину"
+          />
+        )}
       </div>
     </div>
   );

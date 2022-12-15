@@ -134,7 +134,7 @@ const dishSlice = createSlice({
         state.status = "fulfilled";
         if (!action.payload) {
           toast.error("Вы не можете оценить блюдо, которое не пробовали", {
-            duration: 1000,
+            duration: 2000,
             style: { fontFamily: "Montserrat" },
           });
         }
