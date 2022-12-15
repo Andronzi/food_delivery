@@ -2,7 +2,7 @@ import React from "react";
 import styles from "@components/food/food.module.scss";
 import Button from "@components/ui/button/button.component";
 import { useAppDispatch, useAppSelector } from "@redux/hooks/hooks";
-import { addDish } from "@redux/slices/cartSlice";
+import { addDish, getCartDishes } from "@redux/slices/cartSlice";
 import StarRating from "./StarRating";
 import { toast } from "react-hot-toast";
 import Buttons from "@components/cart/buttons";
@@ -43,6 +43,7 @@ const CardInfo: React.FC<CardInfoProps> = ({
         duration: 1000,
         style: { fontFamily: "Montserrat" },
       });
+      dispatch(getCartDishes(localStorage.getItem("token")!));
     }
   };
   return (
