@@ -31,10 +31,9 @@ const DishCard: React.FC<DishCardProps> = ({
     }
   };
   return (
-    <div
-      className={styles.dish}
-      onClick={() => navigate(`/item/${id}`)}>
+    <div className={styles.dish}>
       <div
+        onClick={() => navigate(`/item/${id}`)}
         className={styles.image}
         style={{ backgroundImage: `url(${src})` }}
       />

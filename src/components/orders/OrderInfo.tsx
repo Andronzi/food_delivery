@@ -19,9 +19,9 @@ const OrderInfo: React.FC<IOrderInfo> = ({
   price,
 }) => {
   const navigate = useNavigate();
-  const outputDeliveryTime = getDate(new Date(deliveryTime));
-  const outputOrderTime = getTime(new Date(orderTime));
-  const outputOderDateTime = getDateTime(new Date(orderTime));
+  const outputDeliveryTime = getDate(new Date(orderTime));
+  const outputOrderTime = getTime(new Date(deliveryTime));
+  const outputOderDateTime = getDateTime(new Date(deliveryTime));
   return (
     <div
       className={styles.orderCard}

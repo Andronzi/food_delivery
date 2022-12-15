@@ -81,7 +81,7 @@ option {
     }
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1045px) {
     .container {
         margin: 0px 20px;
         margin-top: 40px;
@@ -111,7 +111,7 @@ option {
     }
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 865px) {
     .container {
         max-width: 560px;
         margin: 0 auto;
@@ -119,7 +119,7 @@ option {
         display: grid;
         justify-items: center;
         align-items: stretch;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 
     .button {

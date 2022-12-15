@@ -20,7 +20,7 @@ type State = {
   loading: string;
   currentRequestId: undefined | string;
   error: null | unknown;
-  errorMessage: null | string;
+  errorMessage: null | string[];
   token: null | string;
 };
 
@@ -110,6 +110,7 @@ const registerSlice = createSlice({
         }
       })
       .addCase(createUser.rejected, (state: State, action: any) => {
+        console.log(action);
         const { requestId } = action.meta;
         if (
           state.loading === "pending" &&
@@ -118,7 +119,7 @@ const registerSlice = createSlice({
           state.loading = "idle";
           state.error = action.error;
           state.currentRequestId = undefined;
-          state.errorMessage = action.payload.message;
+          state.errorMessage = action.payload.response.data.errors;
         }
       })
       .addCase(authUser.pending, (state: State, action) => {

@@ -26,6 +26,7 @@ const Purchase = () => {
   const order = useAppSelector(state => state.order);
 
   const onSubmit: SubmitHandler<IPurchase> = async data => {
+    console.log(data);
     const orderResponse = await dispatch(
       addOrder({
         token: localStorage.getItem("token")!,
