@@ -58,7 +58,7 @@ const Filters: React.FC = () => {
       />
       <Button
         value="Dessert"
-        title="Диссерты"
+        title="Десерты"
       />
       <Button
         value="Drink"

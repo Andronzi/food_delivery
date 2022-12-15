@@ -58,9 +58,34 @@ input {
     content: "⚠ ";
 }
 
+.purchaseContainer {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0px;
+
+    .purchaseTitle {
+        @include setFont(12px, normal, $font, 14px, 500, $black, 0.1em);
+    }
+
+    .purchase {
+        margin-left: 15px;
+        display: block;
+        height: 30px;
+        min-width: 200px;
+        color: #FFFFFF;
+        background-color: #FFC107;
+        border: none;
+        font-family: $font;
+        padding-left: 10px;
+        font-size: 12px;
+    }
+}
+
 .container {
     max-width: 1440px;
     margin: 20px auto;
+    position: relative;
 
     .header {
         @include setFont(24px, normal, $font, 28px, 600, $black, 0.1em);
@@ -105,6 +130,20 @@ input {
 }
 
 @media screen and (max-width: 1040px) {
+    .purchaseContainer {
+        top: 0px;
+        right: 0px;
+        display: block;
+
+        .purchaseTitle {
+            text-align: center;
+        }
+
+        .purchase {
+            margin-top: 10px;
+        }
+    }
+
     .container {
         max-width: 740px;
         margin: 20px auto;
@@ -137,6 +176,20 @@ input {
 }
 
 @media screen and (max-width: 768px) {
+    .purchaseContainer {
+        top: 0px;
+        right: 0px;
+        display: block;
+
+        .purchaseTitle {
+            text-align: center;
+        }
+
+        .purchase {
+            margin-top: 10px;
+        }
+    }
+
     .container {
         max-width: 600px;
         margin: 15px auto;
@@ -169,6 +222,20 @@ input {
 }
 
 @media screen and (max-width: 630px) {
+    .purchaseContainer {
+        top: 0px;
+        right: 0px;
+        display: block;
+
+        .purchaseTitle {
+            text-align: center;
+        }
+
+        .purchase {
+            margin-top: 10px;
+        }
+    }
+
     .container {
         max-width: 450px;
         margin: 15px auto;
@@ -210,6 +277,24 @@ input {
 }
 
 @media screen and (max-width: 480px) {
+    .purchaseContainer {
+        width: 100%;
+        right: 0px;
+        margin-top: 10px;
+        position: relative;
+        display: block;
+
+        .purchaseTitle {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .purchase {
+            margin-top: 10px;
+            margin: 0 auto;
+        }
+    }
+
     .container {
         .header {
             text-align: center;

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { assignFilters } from "@components/food/helpers/filter";
+import { toast } from "react-hot-toast";
 
 export interface Dish {
   id: string;
@@ -72,6 +73,42 @@ export const fetchDish = createAsyncThunk(
   },
 );
 
+export const checkDishRating = createAsyncThunk(
+  "dishes/checkRating",
+  async (
+    params: {token: string; id: string}, {rejectWithValue}
+  ) => {
+    try {
+      const response = await axios.get(`https://food-delivery.kreosoft.ru/api/dish/${params.id}/rating/check`, {
+        headers: {
+          Authorization: `Bearer ${params.token}`,
+        }
+      });
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  },
+);
+
+export const addRating = createAsyncThunk(
+  "dishes/addRating",
+  async (
+    params: {token: string; id: string, score: number}, {rejectWithValue}
+  ) => {
+    try {
+      const response = await axios.post(`https://food-delivery.kreosoft.ru/api/dish/${params.id}/rating?rating=${params.score}`, {}, {
+        headers: {
+          Authorization: `Bearer ${params.token}`,
+        }
+      });
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  },
+);
+
 const dishSlice = createSlice({
   name: "dish",
   initialState,
@@ -83,19 +120,46 @@ const dishSlice = createSlice({
           state.dishes = action.payload.dishes;
           state.pagination = action.payload.pagination;
       })
-      .addCase(fetchDishesWithSearchParams.rejected, (state: State, action: any) => {
+      .addCase(fetchDishesWithSearchParams.rejected, (state: State) => {
           state.status = "rejected";
-          state.pagination = action.payload.pagination;
       })
       .addCase(fetchDish.fulfilled, (state: State, action) => {
         state.status = "fulfilled";
           state.currentDish = action.payload;
-          state.pagination = action.payload.pagination;
       })
-      .addCase(fetchDish.rejected, (state: State, action: any) => {
+      .addCase(fetchDish.rejected, (state: State) => {
           state.status = "rejected";
-          state.pagination = action.payload.pagination;
       })
+      .addCase(checkDishRating.fulfilled, (state: State, action) => {
+        state.status = "fulfilled";
+        if (!action.payload) {
+          toast.error("Вы не можете оценить блюдо, которое не пробовали", {
+            duration: 1000,
+            style: { fontFamily: "Montserrat" },
+          });
+        }
+      })
+      .addCase(checkDishRating.rejected, (state: State) => {
+        toast.error("Возникла ошибка", {
+          duration: 1000,
+          style: { fontFamily: "Montserrat" },
+        });
+        state.status = "rejected";
+    })
+    .addCase(addRating.fulfilled, (state: State) => {
+      state.status = "fulfilled";
+      toast.success("Ваша оценка успешно добавлена", {
+        duration: 1000,
+        style: { fontFamily: "Montserrat" },
+      });
+    })
+    .addCase(addRating.rejected, (state: State) => {
+        state.status = "rejected";
+        toast.error("Возникла ошибка", {
+          duration: 1000,
+          style: { fontFamily: "Montserrat" },
+        });
+    })
   },
 });
 

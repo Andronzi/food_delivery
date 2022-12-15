@@ -37,7 +37,10 @@ const DishComponent = () => {
                 {currentDish.description}
               </p>
               <div className={styles.stars}>
-                <StarRating currentRating={currentDish.rating} />
+                <StarRating
+                  currentRating={currentDish.rating}
+                  dishId={id || ""}
+                />
               </div>
               <p className={styles.subtitle}>Цена: {currentDish.price}./шт</p>
             </div>

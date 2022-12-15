@@ -4,6 +4,7 @@ import Button from "@components/ui/button/button.component";
 import { useAppDispatch } from "@redux/hooks/hooks";
 import { addDish } from "@redux/slices/cartSlice";
 import StarRating from "./StarRating";
+import { toast } from "react-hot-toast";
 
 type CardInfoProps = {
   id: string;
@@ -23,8 +24,22 @@ const CardInfo: React.FC<CardInfoProps> = ({
   price,
 }) => {
   const dispatch = useAppDispatch();
-  const addToBasket = () => {
-    dispatch(addDish({ token: localStorage.getItem("token")!, dishId: id }));
+  const addToBasket = async () => {
+    const basketResponse = await dispatch(
+      addDish({ token: localStorage.getItem("token")!, dishId: id }),
+    );
+
+    if (basketResponse.type === "addDishToCart/rejected") {
+      toast.error("Ошибка добавления в корзину", {
+        duration: 1000,
+        style: { fontFamily: "Montserrat" },
+      });
+    } else {
+      toast.success("Товар успешно добавлен в корзину", {
+        duration: 1000,
+        style: { fontFamily: "Montserrat" },
+      });
+    }
   };
   return (
     <div className={styles.cardInfo}>
@@ -36,7 +51,10 @@ const CardInfo: React.FC<CardInfoProps> = ({
 
       <p style={{ display: "none" }}>{rating || 0}</p>
 
-      <StarRating currentRating={rating} />
+      <StarRating
+        currentRating={rating}
+        dishId={id}
+      />
 
       <p className={styles.description}>{description}</p>
 
