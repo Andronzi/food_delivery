@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack serve --config webpack/webpack.config.js --env env=dev",
     "predeploy": "webpack --config webpack/webpack.config.js --env env=prod",
-    "deploy": "gh-pages -d build",
+    "build": "webpack --config webpack/webpack.config.js --env env=prod",
+    "deploy": "gh-pages -d dist",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
   },
