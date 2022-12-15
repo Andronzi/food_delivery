@@ -20,11 +20,7 @@ const Buttons: React.FC<ButtonsProps> = ({ amount, dishId }) => {
         onClick={() => requestDishAddition(dishId)}
         src={plus}
       />
-      <button
-        className={styles.shadow}
-        type="button">
-        {amount}
-      </button>
+      <div className={styles.shadow}>{amount}</div>
       <img
         alt="Убрать"
         className={styles.minus}

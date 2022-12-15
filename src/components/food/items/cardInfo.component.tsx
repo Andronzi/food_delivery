@@ -65,13 +65,6 @@ const CardInfo: React.FC<CardInfoProps> = ({
       <div className={styles.priceContainer}>
         <p className={styles.price}>{price}₽</p>
 
-        {/* <Button
-          backgroundColor="red"
-          color="white"
-          handleClick={addToBasket}
-          value="В корзину"
-        /> */}
-
         {cartDish[0]?.id ? (
           <Buttons
             amount={cartDish[0].amount}
