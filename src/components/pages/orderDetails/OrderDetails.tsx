@@ -84,6 +84,9 @@ const OrderDetails = () => {
               </div>
             ))}
         </div>
+        <p className={styles.fullPrice}>
+          Стоимость заказа: <span>{order.price}₽</span>
+        </p>
       </div>
       <Toaster />
     </div>

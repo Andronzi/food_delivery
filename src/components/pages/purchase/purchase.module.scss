@@ -19,6 +19,15 @@
     display: flex;
 }
 
+.fullPrice {
+    margin-top: 20px;
+    @include setFont(14px, normal, $font, 24px, 500, $black, 0.1em);
+
+    span {
+        @include setFont(16px, normal, $font, 16px, 600, $black, 0.1em);
+    }
+}
+
 .submit {
     margin-top: 20px;
     display: block;
@@ -105,6 +114,14 @@ input {
 }
 
 @media screen and (max-width: 1040px) {
+    .fullPrice {
+        @include setFont(12px, normal, $font, 24px, 500, $black, 0.1em);
+
+        span {
+            @include setFont(14px, normal, $font, 16px, 600, $black, 0.1em);
+        }
+    }
+
     .container {
         max-width: 740px;
         margin: 20px auto;
@@ -222,6 +239,15 @@ input {
 }
 
 @media screen and (max-width: 480px) {
+    .fullPrice {
+        text-align: center;
+        @include setFont(12px, normal, $font, 24px, 500, $black, 0.1em);
+
+        span {
+            @include setFont(14px, normal, $font, 16px, 600, $black, 0.1em);
+        }
+    }
+
     .container {
         .header {
             text-align: center;

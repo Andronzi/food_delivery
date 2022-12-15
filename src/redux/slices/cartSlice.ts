@@ -88,7 +88,11 @@ const cartSlice = createSlice({
     error: null,
     errorMessage: null,
   } as CartState,
-  reducers: {},
+  reducers: {
+    deleteCart: state =>  {
+        state.dishes = [];
+    }
+  },
   extraReducers: builder => {
     builder
       .addCase(getCartDishes.pending, (state: CartState, action) => {
@@ -192,4 +196,5 @@ const cartSlice = createSlice({
   },
 });
 
+export const { deleteCart } = cartSlice.actions;
 export default cartSlice.reducer;

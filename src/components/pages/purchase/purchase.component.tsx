@@ -82,6 +82,13 @@ const Purchase = () => {
             {index !== cart.dishes.length - 1 && <hr className={styles.hr} />}
           </div>
         ))}
+        <p className={styles.fullPrice}>
+          Стоимость заказа:{" "}
+          <span>
+            {cart.dishes.reduce((prev, current) => prev + current.price, 0) +
+              "₽"}
+          </span>
+        </p>
         {cart.dishes.length ? (
           <input
             type="submit"

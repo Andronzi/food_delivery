@@ -10,6 +10,8 @@ import {
   toggleOpenOfUserEditForm,
 } from "@redux/slices/profileSlice";
 import { toast } from "react-hot-toast";
+import { deleteCart } from "@redux/slices/cartSlice";
+import { deleteOrders } from "@redux/slices/orderSlice";
 
 interface Props {
   name: string | boolean;
@@ -47,6 +49,8 @@ const Icons = ({ name }: Props): JSX.Element => {
     }
 
     dispatch(deleteUser());
+    dispatch(deleteCart());
+    dispatch(deleteOrders());
   };
 
   return (

@@ -119,7 +119,11 @@ const orderSlice = createSlice({
     error: null,
     errorMessage: null,
   } as OrderState,
-  reducers: {},
+  reducers: {
+    deleteOrders: state => {
+      state.orders = [];
+    },
+  },
   extraReducers: builder => {
     builder
     	.addCase(getOrders.pending, (state: OrderState, action) => {
@@ -258,4 +262,5 @@ const orderSlice = createSlice({
   },
 });
 
+export const { deleteOrders } = orderSlice.actions;
 export default orderSlice.reducer;

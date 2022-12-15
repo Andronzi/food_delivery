@@ -36,6 +36,10 @@
     padding-left: 10px;
 }
 
+.phoneInput {
+    display: flex;
+}
+
 .input::placeholder {
     color: #7B7B7B;
 }

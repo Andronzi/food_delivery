@@ -19,6 +19,15 @@
     display: flex;
 }
 
+.fullPrice {
+    margin-top: 20px;
+    @include setFont(14px, normal, $font, 24px, 500, $black, 0.1em);
+
+    span {
+        @include setFont(16px, normal, $font, 16px, 600, $black, 0.1em);
+    }
+}
+
 .submit {
     position: absolute;
     right: 20px;
