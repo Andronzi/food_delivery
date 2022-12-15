@@ -12,6 +12,7 @@ import Filters from "./filters/filters.component";
 import { useAppDispatch } from "@redux/hooks/hooks";
 import { fetchDishesWithSearchParams } from "@redux/slices/dishSlice";
 import DishLoader from "@src/loaders/DishLoaders";
+import { getCartDishes } from "@redux/slices/cartSlice";
 
 const Food: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,6 +27,7 @@ const Food: React.FC = () => {
     console.log([...searchParams]);
     // @ts-ignore
     dispatch(fetchDishesWithSearchParams([...searchParams]));
+    dispatch(getCartDishes(localStorage.getItem("token")!));
   }, [searchParams, setSearchParams]);
 
   if (!data.dishes) {
